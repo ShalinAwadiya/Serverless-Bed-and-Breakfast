@@ -1,8 +1,11 @@
 Serverless Bed and Breakfast
 
 Authors:
-Minal Khona
-Dhruvkumar Patel
-Pranav Chauhan
+
 Anuj Dev
+Dhruvkumar Patel
 Kishan Savaliya
+Minal Khona
+Pranav Chauhan
+Shalin Awadiya
+
