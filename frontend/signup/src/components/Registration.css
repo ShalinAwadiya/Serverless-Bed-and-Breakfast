@@ -1,0 +1,36 @@
+.form-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-top: 40px solid rgb(0, 152, 121);
+  border-left: 3px solid rgb(0, 152, 121);
+  border-right: 3px solid rgb(0, 152, 121);
+  border-bottom: 3px solid rgb(0, 152, 121);
+  padding: 100px;
+}
+.fonts {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 18px;
+}
+.input1 {
+  height: 20px;
+  width: 350px;
+}
+.input2 {
+  height: 60px;
+  width: 300px;
+}
+.label1 {
+  position: absolute;
+  top: 10px;
+  left: 200px;
+}
+.heading {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 30px;
+}
+.Error {
+  color: red;
+}
