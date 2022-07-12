@@ -3,8 +3,8 @@ import {CgProfile} from 'react-icons/cg';
 const Guest = ({isRegistered})=>{
     if(isRegistered){
         return(
-            <a href="#" style={{"color":"grey"}}>
-                <CgProfile style={{"fontSize":"2rem"}}/>   
+            <a href="/profile" style={{"color":"grey"}}>
+                <CgProfile style={{"fontSize":"2.5rem"}}/>   
             </a>
         )
     } else{
