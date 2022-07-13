@@ -1,8 +1,8 @@
 import React from "react";
-import './Room.css';
+import './Food.css';
 import { useNavigate } from "react-router-dom";
 
-const RoomCard = ({ data }) => {
+const FoodCard = ({ data }) => {
   const navigate = useNavigate();
   return (
     <div class="height d-flex justify-content-center align-items-center">
@@ -11,7 +11,6 @@ const RoomCard = ({ data }) => {
           <div class="mt-2">
             <h4 class="text-uppercase">{data.name}</h4>
             <div class="mt-5">
-              <h5 class="text-uppercase mb-0">Beds : {data.bed}</h5>
               <h1 class="main-heading mt-0">${data.rate}</h1>
               <div class="d-flex flex-row user-ratings">
                 <div class="ratings">
@@ -20,7 +19,6 @@ const RoomCard = ({ data }) => {
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                 </div>
-                <h6 class="text-muted ml-1">4/5</h6>
               </div>
             </div>
           </div>
@@ -34,11 +32,11 @@ const RoomCard = ({ data }) => {
         <p>A great option weather you are at office or at home. </p>
 
         <button class="btn btn-danger" onClick={()=>{
-          navigate('/summary',{state:{data:data,type:'room'}})
-        }}>Book</button>
+          navigate('/summary',{state:{data:data,type:'order'}})
+        }}>Order</button>
       </div>
     </div>
   );
 };
 
-export default RoomCard;
+export default FoodCard;

@@ -9,6 +9,7 @@ import Chatbot from 'react-chatbot-kit'
 import RoomBook from './views/Book/RoomBook';
 import DisplayAvailability from './views/Book/DisplayAvailability';
 import Summary from './views/Summary/Summary';
+import Food from './views/Food/Food';
 
 const MainLayout = () =>(
   <>
@@ -35,6 +36,7 @@ function App() {
           <Route exact path='/profile' element={<Profile />} />
           <Route exact path='/bookroom' element={<RoomBook />} />
           <Route exact path='/displayroom' element={<DisplayAvailability />} />
+          <Route exact path='/food' element={<Food />} />
           <Route exact path='/summary' element={<Summary type='room ' />} />
         </Route>
       </Routes>

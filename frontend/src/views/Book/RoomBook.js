@@ -1,6 +1,8 @@
 import React from "react";
 import '../authentication/Auth.css'
+import { useNavigate } from "react-router-dom";
 const RoomBook = () => {
+  const navigate = useNavigate()
   return (
     <div className="main-section">
       <form>
@@ -36,6 +38,9 @@ const RoomBook = () => {
             type="submit"
             className="btn btn-primary"
             style={{ marginTop: "0.75rem", width: "100%" }}
+            onClick={()=>{
+              navigate('/displayroom')
+            }}
           >
             Book
           </button>
