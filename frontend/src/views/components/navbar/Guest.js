@@ -1,15 +1,15 @@
-import React, {useEffect} from "react";
-import {CgProfile} from 'react-icons/cg';
-const Guest = ({isRegistered})=>{
-    if(isRegistered){
-        return(
-            <a href="/profile" style={{"color":"grey"}}>
-                <CgProfile style={{"fontSize":"2.5rem"}}/>   
+import React, { useEffect } from "react";
+import { CgProfile } from 'react-icons/cg';
+const Guest = ({ isRegistered }) => {
+    if (isRegistered) {
+        return (
+            <a href="/profile" style={{ "color": "grey" }}>
+                <CgProfile style={{ "fontSize": "2.5rem" }} />
             </a>
         )
-    } else{
-        return(
-            <a class="btn btn-primary" href="/register">Sign Up</a>
+    } else {
+        return (
+            <a class="btn btn-primary" href="/register">REGISTER</a>
         )
     }
 }
