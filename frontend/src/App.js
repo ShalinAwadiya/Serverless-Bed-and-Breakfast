@@ -5,6 +5,9 @@ import Home from './views/home/Home';
 import Profile from './views/Profile/Profile';
 import Login from './views/authentication/Login';
 import Register from './views/authentication/Register';
+import Chatbot from 'react-chatbot-kit'
+import RoomBook from './views/Book/RoomBook';
+import DisplayAvailability from './views/Book/DisplayAvailability';
 
 const MainLayout = () =>(
   <>
@@ -12,6 +15,7 @@ const MainLayout = () =>(
   <main>
     <div>
       <Outlet />
+      {/* <Chatbot /> */}
     </div>
   </main>
   </>
@@ -28,6 +32,8 @@ function App() {
         <Route element={<MainLayout />}>
           <Route exact path='/' element={<Home />} /> 
           <Route exact path='/profile' element={<Profile />} />
+          <Route exact path='/bookroom' element={<RoomBook />} />
+          <Route exact path='/displayroom' element={<DisplayAvailability />} />
         </Route>
       </Routes>
     </BrowserRouter>

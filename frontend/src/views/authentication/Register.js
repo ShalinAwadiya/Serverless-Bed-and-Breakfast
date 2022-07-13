@@ -1,6 +1,8 @@
 import React from "react";
 import './Auth.css'
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
+  const navigate = useNavigate();
   return (
     <div className="main-section">
       <form>
@@ -50,6 +52,7 @@ const Register = () => {
             type="submit"
             className="btn btn-primary"
             style={{ marginTop: "0.75rem", width: "100%" }}
+            onClick={()=>{navigate('/login')}}
           >
             Register
           </button>

@@ -9,7 +9,7 @@ const Guest = ({isRegistered})=>{
         )
     } else{
         return(
-            <a class="btn btn-primary" href="#signup">Sign Up</a>
+            <a class="btn btn-primary" href="/register">Sign Up</a>
         )
     }
 }
