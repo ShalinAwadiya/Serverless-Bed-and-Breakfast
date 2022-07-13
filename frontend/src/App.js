@@ -8,6 +8,7 @@ import Register from './views/authentication/Register';
 import Chatbot from 'react-chatbot-kit'
 import RoomBook from './views/Book/RoomBook';
 import DisplayAvailability from './views/Book/DisplayAvailability';
+import Summary from './views/Summary/Summary';
 
 const MainLayout = () =>(
   <>
@@ -34,6 +35,7 @@ function App() {
           <Route exact path='/profile' element={<Profile />} />
           <Route exact path='/bookroom' element={<RoomBook />} />
           <Route exact path='/displayroom' element={<DisplayAvailability />} />
+          <Route exact path='/summary' element={<Summary type='room ' />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -3,12 +3,13 @@
 } */
 
 .height {
-    min-height: 100vh;
+    margin-top: 5vh;
+    width: 31%;
 }
 
 .card {
-    width: 350px;
-    height: 370px;
+    min-height: 50vh;
+    width: 100%;
 }
 
 .image {

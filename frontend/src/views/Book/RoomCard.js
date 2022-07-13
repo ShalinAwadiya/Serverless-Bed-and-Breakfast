@@ -1,16 +1,18 @@
 import React from "react";
 import './Room.css';
+import { useNavigate } from "react-router-dom";
 
-const RoomCard = () => {
+const RoomCard = ({ data }) => {
+  const navigate = useNavigate();
   return (
     <div class="height d-flex justify-content-center align-items-center">
       <div class="card p-3">
         <div class="d-flex justify-content-between align-items-center ">
           <div class="mt-2">
-            <h4 class="text-uppercase">Ikea</h4>
+            <h4 class="text-uppercase">{data.name}</h4>
             <div class="mt-5">
-              <h5 class="text-uppercase mb-0">Blanda Matt</h5>
-              <h1 class="main-heading mt-0">VASE</h1>
+              <h5 class="text-uppercase mb-0">Beds : {data.bed}</h5>
+              <h1 class="main-heading mt-0">${data.rate}</h1>
               <div class="d-flex flex-row user-ratings">
                 <div class="ratings">
                   <i class="fa fa-star"></i>
@@ -23,23 +25,17 @@ const RoomCard = () => {
             </div>
           </div>
           <div class="image">
-            <img src="https://i.imgur.com/MGorDUi.png" width="200" />
+            <img src={data.url} width="200" alt="..." />
           </div>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mt-2 mb-2">
-          <span>Available colors</span>
-          <div class="colors">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
+        
 
         <p>A great option weather you are at office or at home. </p>
 
-        <button class="btn btn-danger">Add to cart</button>
+        <button class="btn btn-danger" onClick={()=>{
+          navigate('/summary',{state:{room:data,type:'room'}})
+        }}>Book</button>
       </div>
     </div>
   );

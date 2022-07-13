@@ -1,0 +1,44 @@
+.main-container{
+    min-height: 70vh;
+    width: 50%;
+    border: 1px solid #b1a7a6;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.heading{
+    display: flex;
+    justify-content: center;
+}
+
+.heading p{
+    font-size: 2rem;
+}
+
+.room{
+    display: flex;
+    justify-content: space-evenly;
+    color: #fff;
+}
+
+.summary {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.room-img img{
+    height: 30vh;
+    width: 100%;
+    object-fit: cover;
+}
+
+.total{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    margin: 2rem;
+}
+
+.total p{
+    font-size: 2rem;
+}
