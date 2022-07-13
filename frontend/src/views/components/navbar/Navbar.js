@@ -7,7 +7,7 @@ const Navbar = () => {
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="/">Bed & Breakfast</a>
-                <Guest isRegistered={true} />
+                <Guest isRegistered={false} />
             </div>
         </nav>
   );
