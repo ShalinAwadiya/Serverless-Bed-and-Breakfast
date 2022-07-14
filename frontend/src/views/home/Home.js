@@ -5,26 +5,36 @@ import Services from "./components/Services";
 const Home = () => {
   useEffect(() => {
     fetch(
-      "https://qrwib4asrm354mgmiaofbjxqyq0jifzu.lambda-url.us-east-1.on.aws/?message=Hello&CurrentBot=None&UserId=dhruv",
+      "https://us-east1-serverlessbb.cloudfunctions.net/updateBookingRecords",
       {
-        method: "GET",
+        method: "POST",
         headers: {
-          // 'Access-Control-Allow-Origin':'*',
-          // 'Access-Control-Allow-Credentials':'true',
-          // 'Access-Control-Allow-Methods':'GET,HEAD,OPTIONS,POST,PUT',
-          // 'Access-Control-Allow-Headers':'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-          "Content-Type": "application/json",
-          "Content-Length": "147",
-          "Connection": "keep-alive",
-          "x-amzn-RequestId": "9d142cb5-81f3-4fb6-a79b-5b002e313d5c",
-          "X-Amzn-Trace-Id":
-            "root=1-62cee054-323272d9694ee1fe02e1e295;sampled=0",
+          "access-control-allow-origin": "*",
+          "content-type": "application/json",
+          "function-execution-id": "14n2gnrq3ah8",
+          "X-Cloud-Trace-Context": "3054db186d29f24249a708e576d74187;o=1",
+          "Content-Encoding": "gzip",
+          Date: "Thu, 14 Jul 2022 20:22:46 GMT",
+          Server: "Google Frontend",
+          "Cache-Control": "private",
+          "Alt-Svc":
+            'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"',
+          "Transfer-Encoding": "chunked",
         },
+        body: JSON.stringify({
+          payload: {
+            bookingId: "111",
+            customerId: "111",
+            roomType: "Delux",
+            bookingDate: "20-12-2021",
+            bookingDayPeriod: "11",
+          },
+        }),
       }
     )
-      .then((response) => response.json())
+      .then((resp) => resp.json())
       .then((result) => {
-        console.log("RESULT", result);
+        console.log("DATA", result);
       });
   }, []);
   return (

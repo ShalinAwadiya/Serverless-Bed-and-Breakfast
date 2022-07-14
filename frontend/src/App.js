@@ -5,21 +5,23 @@ import Home from './views/home/Home';
 import Profile from './views/Profile/Profile';
 import Login from './views/authentication/Login';
 import Register from './views/authentication/Register';
-import Chatbot from 'react-chatbot-kit'
 import RoomBook from './views/Book/RoomBook';
 import DisplayAvailability from './views/Book/DisplayAvailability';
 import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
 
+import Chat from './views/chatbot/Chat';
+
 const MainLayout = () =>(
   <>
+  <div className="App">
   <Navbar />
   <main>
     <div>
       <Outlet />
-      {/* <Chatbot /> */}
     </div>
   </main>
+  </div>
   </>
 )
 
@@ -31,6 +33,8 @@ function App() {
       <Routes>
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
+      
+        <Route exact path='/bot' element={<Chat/>} />
         <Route element={<MainLayout />}>
           <Route exact path='/' element={<Home />} /> 
           <Route exact path='/profile' element={<Profile />} />
