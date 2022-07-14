@@ -6,7 +6,7 @@
  */
 exports.caesarCipher = (req, res) => {
   let cipherKey = req.query.key;
-  let text = req.query.text;
+  let text = req.query.text.toUpperCase();
   if (!cipherKey || !text) {
     res.status(400).send(JSON.stringify({ message: 'Missing required field(s) or value(s)' }));
   }
@@ -19,7 +19,7 @@ exports.caesarCipher = (req, res) => {
       index = index - 26;
     }
     decryptedText = decryptedText + alphabets[index];
-    console.log({ decryptedText });
   }
+  res.set('Access-Control-Allow-Origin', '*');
   res.status(200).send(JSON.stringify({ problem: text, solution: decryptedText }));
 };

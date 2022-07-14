@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import randomWords from "random-words";
+import { getSession } from "../../localStorage";
 
 const LoginStage3 = () => {
     const { state } = useLocation();
@@ -21,13 +22,16 @@ const LoginStage3 = () => {
             url: 'https://us-east1-csci-5410-s22-352404.cloudfunctions.net/Caesar-Cipher?text=' + text + '&key=' + state.key,
         }).then((res) => {
             if (res.data.solution === data.get('caesarKey').toUpperCase()) {
-                setError(null);
                 console.log('Caesar Cipher authentication successful');
-                navigate('/profile')
+                setError(null);
+
+                //Access Details Report
+                updateAccessDetails();
             } else {
                 setCount(parseInt(count + 1));
-                console.log(count)
                 setError('Please try again');
+
+                //Change the challenge text after 3 attempts
                 if (count > 3) {
                     setText(randomWords({ exactly: 1, maxLength: 15 }));
                     setError(null);
@@ -35,6 +39,32 @@ const LoginStage3 = () => {
                 }
             }
         });
+    }
+
+    const updateAccessDetails = () => {
+        const session = getSession();
+        console.log({ session });
+
+        const payload = {
+            userId: session.idToken.payload.sub,
+            email: session.idToken.payload.email,
+            action: 'LOGIN',
+            timestamp: new Date(session.idToken.payload.auth_time * 1000).toLocaleString('en-GB').replace(',', '')
+        }
+        console.log({ payload });
+
+        axios({
+            method: 'post',
+            url: 'https://us-east1-csci-5410-s22-352404.cloudfunctions.net/upload-access-details-v2',
+            data: {
+                payload: payload
+            }
+        }).then((res) => {
+            console.log('{ res }');
+            navigate('/profile');
+        }).catch((err) => {
+            console.log(err);
+        })
     }
 
     return (
