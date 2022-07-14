@@ -7,38 +7,25 @@ import Login from './views/authentication/Login';
 import Register from './views/authentication/Register';
 import RoomBook from './views/Book/RoomBook';
 import DisplayAvailability from './views/Book/DisplayAvailability';
-<<<<<<< HEAD
 import { Authentication } from './views/authentication/AuthContext';
 import LoginStage2 from './views/authentication/Login-2';
 import { Protected } from './views/authentication/Protected';
 import LoginStage3 from './views/authentication/Login-3';
-=======
 import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
 
 import Chat from './views/chatbot/Chat';
->>>>>>> kishan
 
 const MainLayout = () => (
   <>
-<<<<<<< HEAD
-    <Navbar />
-    <main>
-      <div>
-        <Outlet />
-        {/* <Chatbot /> */}
-      </div>
-    </main>
-=======
-  <div className="App">
-  <Navbar />
-  <main>
-    <div>
-      <Outlet />
+    <div className="App">
+      <Navbar />
+      <main>
+        <div>
+          <Outlet />
+        </div>
+      </main>
     </div>
-  </main>
-  </div>
->>>>>>> kishan
   </>
 )
 
@@ -53,11 +40,11 @@ const ProtectedRoutes = () => {
 function App() {
   return (
     <BrowserRouter>
-<<<<<<< HEAD
       <Authentication>
         <Routes>
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
+          <Route exact path='/bot' element={<Chat />} />
           <Route element={<MainLayout />}>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/profile' element={<Profile />} />
@@ -65,6 +52,8 @@ function App() {
             <Route exact path='/displayroom' element={<DisplayAvailability />} />
             <Route exact path='/security-questions' element={<LoginStage2 />} />
             <Route exact path='/caesar-cipher' element={<LoginStage3 />} />
+            <Route exact path='/food' element={<Food />} />
+            <Route exact path='/summary' element={<Summary type='room ' />} />
             {/* Routes that require login */}
             <Route
               path="*"
@@ -77,23 +66,7 @@ function App() {
           </Route>
         </Routes>
       </Authentication>
-=======
-      <Routes>
-        <Route exact path='/login' element={<Login />} />
-        <Route exact path='/register' element={<Register />} />
-      
-        <Route exact path='/bot' element={<Chat/>} />
-        <Route element={<MainLayout />}>
-          <Route exact path='/' element={<Home />} /> 
-          <Route exact path='/profile' element={<Profile />} />
-          <Route exact path='/bookroom' element={<RoomBook />} />
-          <Route exact path='/displayroom' element={<DisplayAvailability />} />
-          <Route exact path='/food' element={<Food />} />
-          <Route exact path='/summary' element={<Summary type='room ' />} />
-        </Route>
-      </Routes>
->>>>>>> kishan
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
