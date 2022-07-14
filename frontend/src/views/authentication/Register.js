@@ -3,6 +3,7 @@ import './Auth.css'
 import { useNavigate } from 'react-router-dom';
 import { Button, Grid, TextField, Typography, Box, Container } from "@mui/material";
 import { CognitoUserPool } from "amazon-cognito-identity-js";
+import UserPool from "./UserPool"
 
 const registration = {
   given_name: {
@@ -18,7 +19,7 @@ const registration = {
   password: {
     required: true,
     minLength: 8,
-    regex: /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+    regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&#]{8,}$/
   },
   answer1: {
     required: true
@@ -34,18 +35,11 @@ const registration = {
   }
 };
 
-const poolData = {
-  UserPoolId: "us-east-1_3OS37kCap",
-  ClientId: "168i1e0hfjj7nueiul3ikqbe16"
-};
-const userPool = new CognitoUserPool(poolData);
-
 const Register = () => {
   const navigate = useNavigate();
 
   const [formValue, setFormValue] = useState({});
   const [formErrors, setFormErrors] = useState({});
-  const [sub, setSub] = useState('');
 
   const onFormChange = (event) => {
     setFormValue({
@@ -75,7 +69,7 @@ const Register = () => {
         [property]: {
           required: false,
           valid: false,
-          minLength: !!(value.length < registration[property].minLength)
+          minLength: (value.length < registration[property].minLength)
         }
       });
       isValid = isValid && !(value.length < registration[property].minLength);
@@ -96,62 +90,61 @@ const Register = () => {
   }
 
   const handleSubmit = async (event) => {
-    console.log('here')
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget);
     for (const value in registration) {
-      if (!validateRegistrationData(value, data.get(value))) {
+      if (!validateRegistrationData(value, formData.get(value))) {
         return;
       }
     }
 
     const UserAttributes = [{
       Name: "email",
-      Value: data.get('email'),
+      Value: formData.get('email'),
     },
     {
       Name: "given_name",
-      Value: data.get('given_name'),
+      Value: formData.get('given_name'),
     },
     {
       Name: "family_name",
-      Value: data.get('family_name'),
+      Value: formData.get('family_name'),
     }
     ];
 
     console.log({ UserAttributes })
 
-    userPool.signUp(data.get('email'), data.get('password'), UserAttributes, null, (err, data) => {
+    UserPool.signUp(formData.get('email'), formData.get('password'), UserAttributes, null, async (err, data) => {
       if (err) {
-        console.log({ err })
+        console.log({ err });
       } else {
-        console.log({ data })
-        setSub(data.userSub);
+        console.log({ data });
+        //Insert user registration details in DynamoDB
+        let registration_request = {
+          userSub: data.userSub,
+          email: formData.get('email'),
+          answer1: formData.get('answer1'),
+          answer2: formData.get('answer2'),
+          answer3: formData.get('answer3'),
+          caesarKey: formData.get('caesar_key'),
+        };
+
+        let requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(registration_request),
+        };
+
+        const postResponse = await fetch(
+          "https://gvffgsiagmdonodt6d4zi4cssa0bmuzm.lambda-url.us-east-1.on.aws/",
+          requestOptions
+        );
+        if (postResponse) {
+          navigate('/login')
+        }
+        console.log({ postResponse });
       }
     });
-
-    //Insert user registration details in DynamoDB
-    let registration_request = {
-      userSub: sub,
-      email: data.get('email'),
-      answer1: data.get('answer1'),
-      answer2: data.get('answer2'),
-      answer3: data.get('answer3'),
-      caesarKey: data.get('caesar_key'),
-    };
-
-    let requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(registration_request),
-    };
-
-    const postResponse = await fetch(
-      "https://gvffgsiagmdonodt6d4zi4cssa0bmuzm.lambda-url.us-east-1.on.aws/",
-      requestOptions
-    );
-
-    console.log({ postResponse });
   }
 
   return (
@@ -218,8 +211,11 @@ const Register = () => {
               label="Password"
               required
               fullWidth
+              onChange={onFormChange}
             />
             {formErrors?.password?.required && <Typography color="red" variant="body2">Password is required!</Typography>}
+            {formErrors?.password?.valid && <Typography color="red" variant="body2">Password must contain numbers, special characters, uppercase letters and lowercase letters</Typography>}
+            {formErrors?.password?.minLength && <Typography color="red" variant="body2">Password length must be 8 characters</Typography>}
           </Grid>
 
           <Grid item xs={12}>

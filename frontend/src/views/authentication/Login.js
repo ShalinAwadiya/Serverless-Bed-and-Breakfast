@@ -1,41 +1,70 @@
-import React from "react";
 import './Auth.css';
+import React, { useContext } from 'react';
+import { AuthContext } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { Box, Button, TextField, Typography } from '@mui/material';
+import { getSession, setSession } from '../../localStorage';
+
 const Login = () => {
+  const navigate = useNavigate();
+
+  const { authenticate } = useContext(AuthContext)
+
+  const [error, setError] = React.useState('')
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget)
+    authenticate(data.get('email'), data.get('password'))
+      .then(CognitoUserSession => {
+        setSession(CognitoUserSession);
+        console.log(getSession());
+        navigate('/security-questions')
+      })
+      .catch(err => {
+        setError(err.message)
+        console.error('Failed to login!!!', err)
+      })
+  };
+
   return (
     <div className="main-section">
-      <form>
-        <div className="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-            style={{ margin: "0.75rem 0 0.75rem 0" }}
-          />
-        </div>
-        <div className="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            placeholder="Password"
-            style={{ margin: "0.75rem 0 0.75rem 0" }}
-          />
-        </div>
-        <div style={{"display":"flex","justifyContent":"space-evenly"}}>
-          <button
+      <Box
+        component="form"
+        noValidate
+        onSubmit={handleSubmit}
+        sx={{ mt: 1 }}
+      >
+        <TextField
+          type="text"
+          id="email"
+          name="email"
+          label="Email"
+          required
+          fullWidth
+          sx={{ mt: 2 }}
+        />
+        <TextField
+          type="password"
+          id="password"
+          name="password"
+          label="Password"
+          required
+          fullWidth
+          sx={{ mt: 2 }}
+        />
+        <Typography color="red" variant="body2" sx={{ mt: 1 }}>{error}</Typography>
+        <div style={{ "display": "flex", "justifyContent": "space-evenly" }}>
+          <Button
             type="submit"
-            className="btn btn-primary"
-            style={{"marginTop":"0.75rem","width":"100%"}}
+            variant="contained"
+            sx={{ mt: 2 }}
           >
-            Login
-          </button>
+            NEXT
+          </Button>
         </div>
-      </form>
-    </div>
+      </Box>
+    </div >
   );
 };
 
