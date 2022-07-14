@@ -1,0 +1,56 @@
+/* .bot{
+    margin: 2rem;
+    padding: 1rem;
+    min-height: 20vh;
+}
+
+.bot input{
+    width: 200px !important;
+}
+
+.bot svg{
+    height: 20px;
+    width: 20px;
+}
+
+.bot form{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bot .react-chatbot-kit-chat-bot-message{
+    width: max-content !important;
+}
+
+.bot .react-chatbot-kit-user-avatar-icon{
+    display: none;
+} */
+
+.chat {
+    height: 70vh;
+    width: 30%;
+    margin: auto;
+    margin-top: 1rem;
+    position: relative;
+    border: solid 2px #000;
+}
+
+
+.user-input {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 2px;
+}
+
+.user-input input {
+    width: 100%;
+}
+
+.messages {
+    height: 65vh;
+    border: solid 1px #333;
+    margin: 5px;
+}
+

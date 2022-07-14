@@ -3,12 +3,15 @@ import '../../../assets/css/styles.css'
 import Guest from "./Guest";
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-light bg-light static-top">
-      <div className="container">
-        <a className="navbar-brand" href="/">Bed & Breakfast</a>
-        <Guest isRegistered={false} />
-      </div>
-    </nav>
+  
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">Bed & Breakfast</a>
+                <a class="navbar-brand" href="/bot">Chatbot</a>
+              
+                <Guest isRegistered={false} />
+            </div>
+        </nav>
   );
 };
 
