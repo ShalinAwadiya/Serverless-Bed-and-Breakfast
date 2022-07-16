@@ -15,7 +15,7 @@ const LoginStage2 = () => {
         console.log(getSession().idToken.payload.sub);
         axios({
             method: 'get',
-            url: 'https://if6wu4j6w5xpze4gvg64j3sdt40oictb.lambda-url.us-east-1.on.aws?userSub=' + (getSession().idToken.payload.sub),
+            url: 'https://zxl63mr6rydydqbnkwbe3ccuzq0cssfg.lambda-url.us-east-1.on.aws?userSub=' + (getSession().idToken.payload.sub),
         }).then((res) => {
             console.log({ res });
             const item = res.data.user.Item;

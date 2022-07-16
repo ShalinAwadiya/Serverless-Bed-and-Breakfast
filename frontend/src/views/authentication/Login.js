@@ -2,8 +2,8 @@ import './Auth.css';
 import React, { useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, TextField, Typography } from '@mui/material';
-import { getSession, setSession } from '../../localStorage';
+import { Box, Button, Grid, Link, TextField, Typography } from '@mui/material';
+import { getSession, setAdmin, setSession } from '../../localStorage';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,7 +19,13 @@ const Login = () => {
       .then(CognitoUserSession => {
         setSession(CognitoUserSession);
         console.log(getSession());
-        navigate('/security-questions')
+        if (getSession().idToken.payload.email === 'admin@dal.ca') {
+          setAdmin(Boolean(true));
+          navigate('/admin')
+        } else {
+          setAdmin(Boolean(false));
+          navigate('/security-questions')
+        }
       })
       .catch(err => {
         setError(err.message)
@@ -54,6 +60,13 @@ const Login = () => {
           sx={{ mt: 2 }}
         />
         <Typography color="red" variant="body2" sx={{ mt: 1 }}>{error}</Typography>
+
+        <Grid item>
+          <Link href="/register" variant="body2">
+            {"Don't have an account? Register"}
+          </Link>
+        </Grid>
+
         <div style={{ "display": "flex", "justifyContent": "space-evenly" }}>
           <Button
             type="submit"
