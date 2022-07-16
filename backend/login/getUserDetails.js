@@ -8,7 +8,7 @@ exports.handler = async (event, context) => {
         console.log(userSub);
 
         const userParams = {
-            TableName: "Users",
+            TableName: "users",
             Key: {
                 userSub: userSub
             }

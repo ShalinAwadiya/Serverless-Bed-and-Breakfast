@@ -14,7 +14,7 @@ def lambda_handler(event, context):
     caesarKey = data['caesarKey']
     
     dynamodb = boto3.resource('dynamodb')   
-    table = dynamodb.Table('Users')
+    table = dynamodb.Table('users')
     
     response = table.get_item(Key={'userSub': userSub}) 
     if 'Item' in response:       
