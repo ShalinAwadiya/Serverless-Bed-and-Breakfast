@@ -19,12 +19,12 @@ const Login = () => {
       .then(CognitoUserSession => {
         setSession(CognitoUserSession);
         console.log(getSession());
-        if (!getSession().idToken.payload.email === 'admin@dal.ca') {
-          setAdmin(Boolean(false));
-          navigate('/security-questions')
+        if (getSession().idToken.payload.email === 'admin@dal.ca') {
+          setAdmin(Boolean(true));
+          navigate('/admin')
         } else {
           setAdmin(Boolean(false));
-          navigate('/admin')
+          navigate('/security-questions')
         }
       })
       .catch(err => {
