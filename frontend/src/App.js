@@ -15,6 +15,7 @@ import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
 
 import Chat from './views/chatbot/Chat';
+import Admin from './views/admin';
 
 const MainLayout = () => (
   <>
@@ -54,6 +55,7 @@ function App() {
             <Route exact path='/caesar-cipher' element={<LoginStage3 />} />
             <Route exact path='/food' element={<Food />} />
             <Route exact path='/summary' element={<Summary type='room ' />} />
+            <Route exact path='/admin' element={<Admin />} />
             {/* Routes that require login */}
             <Route
               path="*"

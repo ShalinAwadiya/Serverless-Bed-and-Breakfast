@@ -136,7 +136,7 @@ const Register = () => {
         };
 
         const postResponse = await fetch(
-          "https://gvffgsiagmdonodt6d4zi4cssa0bmuzm.lambda-url.us-east-1.on.aws/",
+          "https://jj26hhy7hq67n4juo64ogoow7i0nxbiu.lambda-url.us-east-1.on.aws/",
           requestOptions
         );
         if (postResponse) {
