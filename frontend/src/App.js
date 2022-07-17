@@ -15,7 +15,7 @@ import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
 
 import Chat from './views/chatbot/Chat';
-import Admin from './views/admin';
+import Admin from './views/admin/adminPage';
 
 const MainLayout = () => (
   <>
