@@ -11,6 +11,7 @@ import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
 
 import Chat from './views/chatbot/Chat';
+import ChatSupport from './views/support/ChatSupport';
 
 const MainLayout = () =>(
   <>
@@ -19,6 +20,7 @@ const MainLayout = () =>(
   <main>
     <div>
       <Outlet />
+      <ChatSupport />
     </div>
   </main>
   </div>
