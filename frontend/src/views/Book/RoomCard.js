@@ -6,7 +6,7 @@ const RoomCard = ({ data, bookData }) => {
   const navigate = useNavigate();
   console.log(bookData);
   const bookIdgenerator = () => {
-    return "bb1234000" + Math.floor(Math.random() * 10000);
+    return Math.floor(Math.random() * 10000);
   };
 
   const dateFormat = (date) =>{
@@ -27,7 +27,7 @@ const RoomCard = ({ data, bookData }) => {
         "price": "120", // from data
         "bookingDate": dateFormat(bookData.date), // from bookData
         "bookingDays":10, //from bookdata
-        "bookingId": bookIdgenerator(),
+        "bookingId": parseInt(bookIdgenerator()),
       })
     }).then(response=>response.json()).then(result=>console.log("Result::",result))
     navigate("/summary", { state: { data: data, type: "room" } });
