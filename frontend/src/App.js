@@ -17,8 +17,8 @@ import Food from './views/Food/Food';
 import Chat from './views/chatbot/Chat';
 import Admin from './views/admin';
 import ChatSupport from './views/support/ChatSupport';
-import Notify from './views/notifications/Notify';
 import DisplayTour from './views/tour/DisplayTour';
+import Notify from './views/notify/Notify';
 
 const MainLayout = () => (
   <>
