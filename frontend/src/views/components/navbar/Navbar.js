@@ -26,7 +26,7 @@ export default function NavBar() {
             Bed & Breakfast
           </Typography>
 
-          <Box sx={{ display: { xs: 'none', md: 'flex', flexGrow: 1 } }}>
+          {/* <Box sx={{ display: { xs: 'none', md: 'flex', flexGrow: 1 } }}>
             <Button
               key='Bot'
               component="a"
@@ -36,7 +36,7 @@ export default function NavBar() {
             >
               CHATBOT
             </Button>
-          </Box>
+          </Box> */}
           <Guest isRegistered={false} />
         </Toolbar>
       </Container>

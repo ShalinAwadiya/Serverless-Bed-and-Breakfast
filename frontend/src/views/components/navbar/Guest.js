@@ -18,7 +18,7 @@ const Guest = ({ isRegistered }) => {
                     variant='outlined'
                     sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
                 >
-                    REGISTER
+                    LOGIN
                 </Button>
             </Box>
         )
