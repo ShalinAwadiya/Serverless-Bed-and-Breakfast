@@ -38,7 +38,7 @@ const Summary = () => {
         </div>
       </div>
     );
-  } else {
+  } else if(type === 'room') {
     return (
       <div className="main-container">
         <div className="heading">
@@ -69,6 +69,41 @@ const Summary = () => {
         <div style={{ backgroundColor: "#8a817c" }}>
           <div className="total">
             <p>Total&nbsp;:&nbsp;${data.rate}</p>
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="main-container">
+        <div className="heading">
+          <p>Thanks for booking tour,</p>
+        </div>
+        <hr />
+        <div style={{ backgroundColor: "#8a817c" }}>
+          <div className="room">
+            <div>
+              <p>Tour</p>
+            </div>
+            <div>
+              <p>id.</p>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className="summary">
+          <div className="room-img">
+            <img src={data.url} alt="..." />
+          </div>
+          {/* <div className="room-data">
+            <p>Bed : {data.Bed}</p>
+            <p>Days :</p>
+          </div> */}
+        </div>
+        <hr />
+        <div style={{ backgroundColor: "#8a817c" }}>
+          <div className="total">
+            <p>Total&nbsp;:&nbsp;${data.price}</p>
           </div>
         </div>
       </div>

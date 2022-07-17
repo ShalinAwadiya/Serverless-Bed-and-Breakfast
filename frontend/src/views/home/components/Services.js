@@ -46,6 +46,28 @@ const Services = () => {
           </a>
         </div>
       </div>
+      {/* ============= */}
+      <div
+        className="card text-center"
+        style={{ width: "20%", margin: "2rem" }}
+      >
+        <img
+          src="https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dG91cnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=900&q=60"
+          className="card-img-top"
+          alt="..."
+          style={{ height: "30vh", maxWidth: "100%", objectFit: "cover" }}
+        />
+        <div className="card-body">
+          <h5 className="card-title">Book a Tour</h5>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="/displaytour" className="btn btn-primary" style={{ width: "50%" }}>
+            Book
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
