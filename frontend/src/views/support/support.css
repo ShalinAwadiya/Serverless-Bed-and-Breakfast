@@ -1,0 +1,9 @@
+.support{
+    height: 100px;
+    width: 100px;
+    position: fixed;
+    border-radius: 50%;
+    background-color: brown;
+    display: flex;
+    justify-content: space-evenly;
+}

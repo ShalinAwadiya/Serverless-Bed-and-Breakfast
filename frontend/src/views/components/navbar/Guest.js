@@ -14,11 +14,11 @@ const Guest = ({ isRegistered }) => {
                 <Button
                     key='Bot'
                     component="a"
-                    href='/register'
+                    href='/login'
                     variant='outlined'
                     sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
                 >
-                    REGISTER
+                    LOGIN
                 </Button>
             </Box>
         )

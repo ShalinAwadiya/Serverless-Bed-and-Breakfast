@@ -19,7 +19,7 @@ const Services = () => {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
-          <a href="#" className="btn btn-primary" style={{ width: "50%" }}>
+          <a href="/bookroom" className="btn btn-primary" style={{ width: "50%" }}>
             Book
           </a>
         </div>
@@ -41,7 +41,7 @@ const Services = () => {
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </p>
-          <a href="#" className="btn btn-primary" style={{ width: "50%" }}>
+          <a href="/food" className="btn btn-primary" style={{ width: "50%" }}>
             Order
           </a>
         </div>
