@@ -12,7 +12,7 @@ def updateBookingRecords(payload):
         formData['roomType'] =  payload['RoomType']
         formData['price'] = payload['price']
         formData['bookingDate'] = payload['bookingDate']
-        formData['bookingId'] = payload['bookindId']
+        formData['bookingId'] = payload['bookingId']
 
         url = "https://us-east1-serverlessbb.cloudfunctions.net/updateBookingRecords"
         payload = {"payload": payload}
