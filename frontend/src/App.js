@@ -17,6 +17,8 @@ import Food from './views/Food/Food';
 import Chat from './views/chatbot/Chat';
 import Admin from './views/admin';
 import ChatSupport from './views/support/ChatSupport';
+import Notify from './views/notifications/Notify';
+import DisplayTour from './views/tour/DisplayTour';
 
 const MainLayout = () => (
   <>
@@ -58,8 +60,10 @@ function App() {
             <Route exact path='/food' element={<Food />} />
             <Route exact path='/summary' element={<Summary type='room ' />} />
             <Route exact path='/admin' element={<Admin />} />
+            <Route exact path='/notify' element={<Notify />} />
+            <Route exact path='/displaytour' element={<DisplayTour />} />
             {/* Routes that require login */}
-            <Route
+            <Route 
               path="*"
               element={
                 <Protected>

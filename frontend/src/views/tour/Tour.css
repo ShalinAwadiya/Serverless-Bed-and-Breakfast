@@ -1,0 +1,76 @@
+/* body {
+    background-color: #dce3f0;
+} */
+
+.height {
+    margin-top: 5vh;
+    width: 31%;
+}
+
+.card {
+    min-height: 30vh;
+    width: 100%;
+}
+
+.image {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+}
+
+.main-heading {
+    font-size: 40px;
+    color: red !important;
+}
+
+.ratings i {
+    color: orange;
+}
+
+.user-ratings h6 {
+    margin-top: 2px;
+}
+
+.colors {
+    display: flex;
+    margin-top: 2px;
+}
+
+.colors span {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    margin-right: 6px;
+}
+
+.colors span:nth-child(1) {
+
+    background-color: red;
+
+}
+
+.colors span:nth-child(2) {
+
+    background-color: blue;
+
+}
+
+.colors span:nth-child(3) {
+
+    background-color: yellow;
+
+}
+
+.colors span:nth-child(4) {
+
+    background-color: purple;
+
+}
+
+.btn-danger {
+
+    height: 48px;
+    font-size: 18px;
+}
