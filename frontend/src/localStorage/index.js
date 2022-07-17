@@ -7,6 +7,7 @@ export const getUserId = () => {
 }
 
 export const setSession = (session) => {
+    setEmail(session.idToken.payload.email);
     return localStorage.setItem('session', JSON.stringify(session));
 }
 
@@ -20,4 +21,12 @@ export const setAdmin = (admin) => {
 
 export const getAdmin = () => {
     return localStorage.getItem('admin');
+}
+
+export const setEmail = (email) => {
+    return localStorage.setItem("email",email.toString());
+}
+
+export const getEmail = () =>{
+    return localStorage.getItem("email");
 }

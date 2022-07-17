@@ -1,6 +1,7 @@
 import React from "react";
 import "./Room.css";
 import { useNavigate } from "react-router-dom";
+import { getEmail } from "../../localStorage";
 
 const RoomCard = ({ data, bookData }) => {
   const navigate = useNavigate();
@@ -16,20 +17,21 @@ const RoomCard = ({ data, bookData }) => {
   const bookRoomHanlder = () => {
     console.log("started..");
     
-    fetch('https://us-central1-authentic-codex-352820.cloudfunctions.net/HotelManagementTopic',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({
-        "email":"ks@dal.ca", //taking from localstorage
-        "roomNo":"301", //from data
-        "price": "120", // from data
-        "bookingDate": dateFormat(bookData.date), // from bookData
-        "bookingDays":10, //from bookdata
-        "bookingId": parseInt(bookIdgenerator()),
-      })
-    }).then(response=>response.json()).then(result=>console.log("Result::",result))
+    // fetch('https://us-central1-authentic-codex-352820.cloudfunctions.net/HotelManagementTopic',{
+    //   method:'POST',
+    //   headers:{
+    //     'Content-Type':'application/json'
+    //   },
+    //   body:JSON.stringify({
+    //     "email":"ks@dal.ca", //taking from localstorage
+    //     "roomNo":"301", //from data
+    //     "price": "120", // from data
+    //     "bookingDate": dateFormat(bookData.date), // from bookData
+    //     "bookingDays":10, //from bookdata
+    //     "bookingId": parseInt(bookIdgenerator()),
+    //   })
+    // }).then(response=>response.json()).then(result=>console.log("Result::",result))
+    console.log("SESSION:",getEmail())
     navigate("/summary", { state: { data: data, type: "room" } });
   };
   return (

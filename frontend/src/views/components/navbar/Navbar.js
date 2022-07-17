@@ -1,13 +1,19 @@
 import '../../../assets/css/styles.css'
-import React, { useContext } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Button, Container, Toolbar } from "@mui/material";
+import { Button, Container, getListItemAvatarUtilityClass, Toolbar } from "@mui/material";
 import Guest from './Guest';
+import {getEmail} from '../../../localStorage/index';
 
 export default function NavBar() {
-
+  const [isRegistered,setIsRegistered] = useState(false);
+  useEffect(()=>{
+    if(getEmail()){
+      setIsRegistered(true)
+    }
+  },[])
   return (
     <AppBar class="bg-light" position="static">
       <Container maxWidth="xl">
@@ -37,7 +43,7 @@ export default function NavBar() {
               CHATBOT
             </Button>
           </Box>
-          <Guest isRegistered={false} />
+          <Guest isRegistered={isRegistered} />
         </Toolbar>
       </Container>
     </AppBar >

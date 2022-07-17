@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 const TourCard = ({ data }) => {
   const navigate = useNavigate();
-
+  const tourIdgenerator = () => {
+    return Math.floor(Math.random() * 10000);
+  };
   const bookTourHandler = ()=>{
     fetch('https://us-central1-authentic-codex-352820.cloudfunctions.net/TourOperatorTopicFunction',{
       method:'POST',
@@ -15,7 +17,8 @@ const TourCard = ({ data }) => {
         email:"ks@dal.ca",
         tourName:data.tourName,
         price:data.price,
-        bookingDate: "18-08-2022"
+        bookingDate: "22-08-2022",
+        bookingId:tourIdgenerator()
       })
     }).then(response=>response.json()).then(result=>console.log(result))
     navigate('/summary',{state:{data:data,type:'tour'}})
