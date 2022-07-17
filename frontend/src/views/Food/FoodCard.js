@@ -1,42 +1,90 @@
-import React from "react";
+import React, { useState } from "react";
 import './Food.css';
 import { useNavigate } from "react-router-dom";
+import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
+import { getSession } from '../../localStorage';
+import axios from "axios";
 
-const FoodCard = ({ data }) => {
+const FoodCard = ({ item }) => {
   const navigate = useNavigate();
+
+  const [added, setAdded] = useState(false);
+
+  const addToCart = (item) => {
+    let foodItem = {
+      name: item.name,
+      price: item.price,
+      quantity: 1
+    }
+
+    console.log({ foodItem });
+
+    if (getSession()) {
+      //If the user is already loggedIn and session exists
+      var request = {
+        userSub: getSession().idToken.payload.sub,
+        email: getSession().idToken.payload.email,
+        food: foodItem
+      }
+      console.log(JSON.stringify(request));
+
+      axios({
+        method: 'post',
+        url: 'https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/',
+        data: JSON.stringify(request),
+        headers: { "Content-Type": "application/json" },
+      }).then((res) => {
+        setAdded(true);
+        console.log({ res });
+      }).catch((err) => {
+        console.log(err);
+      })
+    } else {
+      //We need to store the cart in local storage and insert once the user logs in successfully
+    }
+  }
+
   return (
-    <div class="height d-flex justify-content-center align-items-center">
-      <div class="card p-3">
-        <div class="d-flex justify-content-between align-items-center ">
-          <div class="mt-2">
-            <h4 class="text-uppercase">{data.name}</h4>
-            <div class="mt-5">
-              <h1 class="main-heading mt-0">${data.rate}</h1>
-              <div class="d-flex flex-row user-ratings">
-                <div class="ratings">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="image">
-            <img src={data.url} width="200" alt="..." />
-          </div>
-        </div>
+    <Grid item md={3} sm={6} xs={12}>
+      <Paper sx={{ p: 2 }}>
+        <Grid item sx={{ display: { xs: 'flex', md: 'flex', maxHeight: 180, minHeight: 180 } }}>
+          <img
+            width="100%"
+            src={item.image}
+            srcSet={item.image}
+            loading="lazy"
+          />
+        </Grid>
 
-        
+        <Stack direction={'column'}>
+          <Typography
+            component={'div'}
+            variant="body1"
+            width="100%"
+            color='black'
+            textAlign="left"
+            fontWeight="bold"
+            marginLeft={1}>
+            {item.name}
+          </Typography>
 
-        <p>A great option weather you are at office or at home. </p>
+          <Typography
+            variant="body1"
+            textAlign="left"
+            color='black'
+            marginLeft={1}>
+            ${item.price}
+            <br />
+          </Typography>
 
-        <button class="btn btn-danger" onClick={()=>{
-          navigate('/summary',{state:{data:data,type:'order'}})
-        }}>Order</button>
-      </div>
-    </div>
+          <Button
+            onClick={() => addToCart(item)}
+            variant='contained'>
+            Add to Cart
+          </Button>
+        </Stack>
+      </Paper >
+    </Grid >
   );
 };
-
 export default FoodCard;
