@@ -9,6 +9,11 @@ from google.cloud import pubsub_v1
 publisher = pubsub_v1.PublisherClient()
 PROJECT_ID = "authentic-codex-352820"
 
+
+
+
+
+
 # Publishes a message to a Cloud Pub/Sub topic.
 def publish(request):
     request_json = request.get_json(silent=True)
