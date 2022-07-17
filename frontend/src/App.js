@@ -16,6 +16,7 @@ import Food from './views/Food/Food';
 
 import Chat from './views/chatbot/Chat';
 import Admin from './views/admin';
+import ChatSupport from './views/support/ChatSupport';
 
 const MainLayout = () => (
   <>
@@ -24,6 +25,7 @@ const MainLayout = () => (
       <main>
         <div>
           <Outlet />
+          <ChatSupport />
         </div>
       </main>
     </div>
@@ -45,7 +47,7 @@ function App() {
         <Routes>
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
-          <Route exact path='/bot' element={<Chat />} />
+          <Route exact path='/bot' element={<ChatSupport />} />
           <Route element={<MainLayout />}>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/profile' element={<Profile />} />
