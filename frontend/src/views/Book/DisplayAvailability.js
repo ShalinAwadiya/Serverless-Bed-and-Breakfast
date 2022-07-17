@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useEffect, useState } from "react";
 import "./Room.css";
 import RoomCard from "./RoomCard";
 import { useLocation } from "react-router-dom";
@@ -6,6 +6,26 @@ import { useLocation } from "react-router-dom";
 const DisplayAvailability = () => {
   const location = useLocation()
   const bookData= location.state;
+  const [availability,setAvailability] = useState({});
+  //28-02-2022
+  useEffect(()=>{
+      fetchAvailability();
+      checkAvailability();
+  },[])
+  
+  const fetchAvailability = ()=>{
+    console.log(bookData.date)
+    fetch(`https://jj6eksvjm6vppixjgmuyjizbma0qqxjm.lambda-url.us-east-1.on.aws/?startDate=${bookData.date}&noOfDays=${bookData.days}&roomType=${bookData.type}`,{
+      method:'GET'
+    }).then(response=>response.json()).then(result=>{
+      setAvailability(result.availability)
+      console.log("Rooms:",result.availability)})
+  }
+
+  const checkAvailability=()=>{
+    
+  }
+
   const data = [
     {
       roomNo: 101,

@@ -4,8 +4,13 @@ import { useNavigate } from "react-router-dom";
 const RoomBook = () => {
   const navigate = useNavigate();
   const [days, setDays] = useState(0);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState("");
   const [type,setType] = useState("")
+  
+  // const thisis=()=>{
+  //   console.log(date)
+  //   navigate("/displayroom", { state: { days: days, date: date, type:type } });
+  // }
   return (
     <div className="main-section">
       <form>
@@ -52,8 +57,13 @@ const RoomBook = () => {
             type="date"
             id="example"
             class="form-control"
+            
             style={{ margin: "0.75rem 0 0.75rem 0" }}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={(e) =>{
+              var newDate = e.target.value.split('-');
+
+              setDate(newDate[2].toString()+"-"+newDate[1].toString()+"-"+newDate[0].toString())
+            } }
           />
           <i class="fas fa-calendar input-prefix"></i>
         </div>
@@ -65,6 +75,7 @@ const RoomBook = () => {
             style={{ marginTop: "0.75rem", width: "100%" }}
             onClick={() => {
               navigate("/displayroom", { state: { days: days, date: date, type:type } });
+              //thisis()
             }}
           >
             Book
