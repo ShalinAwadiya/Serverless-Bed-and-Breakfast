@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./notify.css";
-
+import { getEmail } from "../../localStorage/index";
 const Notify = () => {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(false);
@@ -15,17 +15,19 @@ const Notify = () => {
   //       .then((result) => console.log(result));
   //   };
   useEffect(() => {
-    fetch(
-      "https://xldvx2k4buvuhyy4pawwz2lz2m0gxcvh.lambda-url.us-east-1.on.aws?email=dhruv@email.com",
-      {
-        method: "GET",
-      }
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        setData(result.message);
-        setLoad(true);
-      });
+    if (getEmail()) {
+      fetch(
+        `https://xldvx2k4buvuhyy4pawwz2lz2m0gxcvh.lambda-url.us-east-1.on.aws?email=${getEmail()}`,
+        {
+          method: "GET",
+        }
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          setData(result.message);
+          setLoad(true);
+        });
+    }
   }, []);
 
   if (load) {
@@ -40,14 +42,14 @@ const Notify = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item,index) => {
-                
-
-                const newDate = new Date(parseFloat(item.timeStamp.replace(".","")));
+            {data.map((item, index) => {
+              const newDate = new Date(
+                parseFloat(item.timeStamp.replace(".", ""))
+              );
 
               return (
                 <tr key={index}>
-                  <th scope="row">{index+1}</th>
+                  <th scope="row">{index + 1}</th>
                   <td>{newDate.toDateString()}</td>
                   <td>{item.message}</td>
                 </tr>
@@ -58,9 +60,7 @@ const Notify = () => {
       </div>
     );
   } else {
-    return(
-    <h1>Loading</h1>
-    )
+    return <h1>Loading</h1>;
   }
 };
 

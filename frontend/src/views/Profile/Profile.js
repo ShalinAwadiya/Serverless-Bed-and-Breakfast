@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import {
   Button,
   Container,
@@ -8,8 +8,16 @@ import {
 import Box from "@mui/material/Box";
 import UserPool from "../authentication/UserPool";
 import {useNavigate} from 'react-router-dom';
+import {getEmail} from '../../localStorage/index';
 
 const Profile = () => {
+  const [data,setData] = useState([]);
+  useEffect(()=>{
+      fetch(`https://lffyvdvm5hquei7oi7w37fz44u0efnfp.lambda-url.us-east-1.on.aws/?email=V2Check@dal.ca`,{
+        method:'GET'
+      }).then(response=>response.json()).then(result=>console.log(result))
+  },[])
+  
   const navigate = useNavigate()
   const logoutHandler = ()=>{
     const congnitoUser = UserPool.getCurrentUser()
@@ -35,6 +43,7 @@ const Profile = () => {
                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                     class="rounded-circle img-fluid"
                     style={{ width: "100px" }}
+                    alt = "..."
                   />
                 </div>
                 <h4 class="mb-2">Julie L. Arsenault</h4>

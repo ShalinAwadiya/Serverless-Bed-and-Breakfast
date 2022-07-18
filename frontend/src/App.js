@@ -18,6 +18,7 @@ import Admin from './views/admin/adminPage';
 import Support from './views/support/Support';
 import Cart from "./views/Food/Cart";
 import DisplayTour from './views/tour/DisplayTour';
+import Notify from './views/notify/Notify';
 const MainLayout = () => (
   <>
     <div className="App">
@@ -58,6 +59,7 @@ function App() {
             <Route exact path='/summary' element={<Summary type='room ' />} />
             <Route exact path='/admin' element={<Admin />} />
             <Route exact path='/food-cart' element={<Cart />} />
+            <Route exact path='/notify' element={<Notify />} />
             <Route exact path="/displaytour" element={<DisplayTour />}></Route>
             {/* Routes that require login */}
             <Route
