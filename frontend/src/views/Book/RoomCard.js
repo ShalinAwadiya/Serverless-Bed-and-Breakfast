@@ -13,7 +13,8 @@ const RoomCard = ({ data, bookData, price }) => {
 
   const dateFormat = (date) =>{
     var newDate = date.split('-');
-    return newDate[2].toString()+newDate[1].toString()+newDate[0].toString()
+    console.log(date);
+    return newDate[2].toString()+'-'+newDate[1].toString()+'-'+newDate[0].toString()
   }
   const bookRoomHanlder = () => {
     console.log("started..");
@@ -24,13 +25,13 @@ const RoomCard = ({ data, bookData, price }) => {
         'Content-Type':'application/json'
       },
       body:JSON.stringify({
-        "email":"def@dal.ca", //taking from localstorage
-        "roomNo":"201", //from data
-        "price": "520", // from data
-        "bookingDate": dateFormat(bookData.date), // from bookData
-        "bookingDays":10, //from bookdata
+        "email":"test@dal.ca", //taking from localstorage
+        "roomNo":parseInt(data.room), //from data
+        "price": price, // from data
+        "bookingDate": bookData.date, // from bookData
+        "bookingDays":parseInt(bookData.days), //from bookdata
         "bookingId": parseInt(bookIdgenerator()),
-        RoomType:"delux"
+        "RoomType":"delux"
       })
     }).then(response=>response.json()).then(result=>console.log("Result::",result))
     console.log("SESSION:",getEmail())
