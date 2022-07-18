@@ -9,7 +9,7 @@ exports.handler = async (event) => {
     const cart = {
         TableName: "food_cart",
         Key: {
-            userSub: userSub
+            userSub: userSub,
         }
     };
 
@@ -17,4 +17,4 @@ exports.handler = async (event) => {
     console.log({ fetchedCartDetails });
 
     return fetchedCartDetails;
-};
+}

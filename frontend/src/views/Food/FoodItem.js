@@ -5,82 +5,82 @@ import { useState } from "react";
 import { getSession } from '../../localStorage';
 import axios from "axios";
 
-export default function FoodItem({ item, totalPrice }) {
+export default function FoodItem({ item }) {
     const [quantity, setQuantity] = useState(item.quantity)
     const [price, setPrice] = useState(parseInt(item.price));
 
-    console.log(item.basePrice);
-    const basePrice = parseInt(item.basePrice);
+    const basePrice = item.basePrice;
 
     const handleIncrement = () => {
+        //Limit to 5 Quantity per item
         if (quantity != 5) {
             setQuantity(quantity + 1);
             setPrice(price + parseInt(basePrice));
-        }
 
-        var request = {
-            userSub: getSession().idToken.payload.sub,
-            email: getSession().idToken.payload.email,
-            totalPrice: basePrice,
-            food: {
-                name: item.name,
-                basePrice: basePrice,
-                price: price + parseInt(basePrice),
-                quantity: parseInt(quantity) + 1
+            var request = {
+                userSub: getSession().idToken.payload.sub,
+                email: getSession().idToken.payload.email,
+                totalPrice: basePrice,
+                food: {
+                    name: item.name,
+                    basePrice: basePrice,
+                    price: price + parseInt(basePrice),
+                    quantity: parseInt(quantity) + 1
+                }
             }
+            axios({
+                method: 'post',
+                url: 'https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/',
+                data: JSON.stringify(request),
+                headers: { "Content-Type": "application/json" },
+            }).then((res) => {
+                console.log({ res });
+            }).catch((err) => {
+                console.log(err);
+            })
         }
-        axios({
-            method: 'post',
-            url: 'https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/',
-            data: JSON.stringify(request),
-            headers: { "Content-Type": "application/json" },
-        }).then((res) => {
-            console.log({ res });
-        }).catch((err) => {
-            console.log(err);
-        })
     };
 
     const handleDecrement = () => {
         if (quantity != 1) {
             setQuantity(quantity - 1);
             setPrice(price - basePrice);
-        }
 
-        var request = {
-            userSub: getSession().idToken.payload.sub,
-            email: getSession().idToken.payload.email,
-            basePrice: basePrice,
-            totalPrice: 0 - basePrice,
-            food: {
-                name: item.name,
-                price: price - basePrice,
-                quantity: quantity - 1
+            var request = {
+                userSub: getSession().idToken.payload.sub,
+                email: getSession().idToken.payload.email,
+                totalPrice: 0 - basePrice,
+                food: {
+                    name: item.name,
+                    basePrice: basePrice,
+                    price: price - basePrice,
+                    quantity: quantity - 1
+                }
             }
-        }
-        console.log({ request });
+            console.log({ request });
 
-        axios({
-            method: 'post',
-            url: 'https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/',
-            data: JSON.stringify(request),
-            headers: { "Content-Type": "application/json" },
-        }).then((res) => {
-            console.log({ res });
-        }).catch((err) => {
-            console.log(err);
-        })
+            axios({
+                method: 'post',
+                url: 'https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/',
+                data: JSON.stringify(request),
+                headers: { "Content-Type": "application/json" },
+            }).then((res) => {
+                console.log({ res });
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
     };
 
     return (
         <Stack direction={'row'} spacing={2}>
-            <Stack sx={{ pl: 1, pt: 1, minWidth: 150, textAlign: 'left' }}>
+            <Stack sx={{ pl: 1, pt: 1, minWidth: 150, maxWidth: 150, textAlign: 'left' }}>
                 {item.name}
             </Stack>
-            <Stack sx={{ pl: 20, pt: 1 }}>
+            <Stack sx={{ pl: 20, pt: 1, minWidth: 40, maxWidth: 40 }}>
                 ${price}
             </Stack>
-            <Stack direction={'row'} spacing={1} sx={{ pl: 2 }}>
+            <Stack direction={'row'} spacing={0.5} sx={{ pl: 2 }}>
                 <Stack>
                     <Button onClick={handleDecrement}>
                         <RemoveCircleOutlineIcon />
