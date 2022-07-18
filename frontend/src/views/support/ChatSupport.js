@@ -15,12 +15,13 @@ function MessageBox (props){
     const [currentBot, setCurrentBot] = useState("None")
 
     function getBotResponse(){
+        console.log(currentBot)
         return axios.get("https://qrwib4asrm354mgmiaofbjxqyq0jifzu.lambda-url.us-east-1.on.aws/", 
             {
                 params: {
                     message: currentMsg,
                     CurrentBot: currentBot,
-                    UserId: "dhruv2@email.com"
+                    UserId: "dhruv3@email.com"
                 }
             }
         )
