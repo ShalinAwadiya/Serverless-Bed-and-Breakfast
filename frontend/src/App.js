@@ -13,7 +13,8 @@ import { Protected } from './views/authentication/Protected';
 import LoginStage3 from './views/authentication/Login-3';
 import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
-import ChatSupport from './views/support/ChatSupport';
+
+// import Chat from './views/chatbot/Chat';
 import Admin from './views/admin';
 import Notify from './views/notifications/Notify';
 import DisplayTour from './views/tour/DisplayTour';
