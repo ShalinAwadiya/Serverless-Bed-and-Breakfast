@@ -15,13 +15,9 @@ import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
 import ChatSupport from './views/support/ChatSupport';
 import Admin from './views/admin';
-<<<<<<< HEAD
-import ChatSupport from './views/support/ChatSupport';
 import Notify from './views/notifications/Notify';
 import DisplayTour from './views/tour/DisplayTour';
-=======
 import Support from './views/support/Support';
->>>>>>> chatbotFE
 
 const MainLayout = () => (
   <>
@@ -52,11 +48,7 @@ function App() {
         <Routes>
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
-<<<<<<< HEAD
-          <Route exact path='/bot' element={<ChatSupport />} />
-=======
            {/* <Route exact path='/bot' element={<ChatSupport />} />  */}
->>>>>>> chatbotFE
           <Route element={<MainLayout />}>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/profile' element={<Profile />} />

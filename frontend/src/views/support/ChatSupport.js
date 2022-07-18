@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import React,{useState} from "react";
-import './support.css'
-=======
 import { Grid, Table, TableContainer, TableRow } from "@mui/material";
 import React,{useState, useRef, useEffect} from "react";
 import './support.css';
@@ -98,17 +94,12 @@ function MessageBox (props){
     )
 }
 
->>>>>>> chatbotFE
 
 const ChatSupport = ()=>{
     const [botName,setbotName] = useState("");
     return(
-<<<<<<< HEAD
-        <div className="support">
-=======
         <div>
             <MessageBox></MessageBox>
->>>>>>> chatbotFE
         </div>
     )
 }
