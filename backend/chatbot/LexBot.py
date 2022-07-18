@@ -200,26 +200,26 @@ class OrderFood(ProcessUserQueries):
             FoodPrice = {"coffee": 2, "tea": 2, "bagel": 4, "wrap": 5}
 
             url = "https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/"
-            payload = {
-                "userSub": "f55b1743-2f67-487f-40bc23268bc89",
-                "email": "dddddddddddd@dal.ca",
-                "totalPrice": 4,
-                "food": {
-                    "name": "Egg McMuffin",
-                    "basePrice": 2,
-                    "price": 4,
-                    "quantity": 2
-                }
-            }
-
-            # payload['userSub'] = "1111111111"
-            # payload['email'] = email
-            # payload['food'] = {"name": self.getSlotValue(bot_response['sessionState']['intent'], "FoodOrderDish"),
-            #                 #    "price": FoodPrice[
-            #                 #        self.getSlotValue(bot_response['sessionState']['intent'], "FoodOrderDish")],
-            #                     "price": 1,
-            #                    "qunatity": 1}
-            # payload['totalPrice'] = 2
+            # payload = {
+            #     "userSub": "f55b1743-2f67-487f-40bc23268bc89",
+            #     "email": "dddddddddddd@dal.ca",
+            #     "totalPrice": 4,
+            #     "food": {
+            #         "name": "Egg McMuffin",
+            #         "basePrice": 2,
+            #         "price": 4,
+            #         "quantity": 2
+            #     }
+            # }
+            payload = {}
+            payload['userSub'] = "1111111111"
+            payload['email'] = email
+            payload['food'] = {"name": self.getSlotValue(bot_response['sessionState']['intent'], "FoodOrderDish"),
+                               "price": FoodPrice[
+                                   self.getSlotValue(bot_response['sessionState']['intent'], "FoodOrderDish")],
+                               
+                               "qunatity": 1}
+            payload['totalPrice'] = 2
 
             # requests.post(url, data=payload, headers=headers)
         
