@@ -45,6 +45,7 @@ function App() {
         <Routes>
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
+          <Route exact path='/admin' element={<Admin />} />
           <Route exact path='/bot' element={<Chat />} />
           <Route element={<MainLayout />}>
             <Route exact path='/' element={<Home />} />
@@ -55,7 +56,7 @@ function App() {
             <Route exact path='/caesar-cipher' element={<LoginStage3 />} />
             <Route exact path='/food' element={<Food />} />
             <Route exact path='/summary' element={<Summary type='room ' />} />
-            <Route exact path='/admin' element={<Admin />} />
+            
             {/* Routes that require login */}
             <Route
               path="*"
