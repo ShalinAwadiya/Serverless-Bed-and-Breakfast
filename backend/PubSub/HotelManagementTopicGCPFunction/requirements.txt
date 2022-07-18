@@ -2,3 +2,5 @@
 # package>=version
 
 google-cloud-pubsub
+flask
+flask-cors

@@ -3,18 +3,23 @@ import base64
 import json
 import os
 from google.cloud import pubsub_v1
+import flask
+from flask_cors import cross_origin
 
 
 # Instantiates a Pub/Sub client
 publisher = pubsub_v1.PublisherClient()
 PROJECT_ID = "authentic-codex-352820"
 
+@cross_origin()
 # Publishes a message to a Cloud Pub/Sub topic.
 def publish(request):
+    print(request)
     request_json = request.get_json(silent=True)
 
     topic_name = "HotelManagementTopic"
     message = request_json
+    print(request_json)
     if not message:
         return ('Missing Body', 400)
 
