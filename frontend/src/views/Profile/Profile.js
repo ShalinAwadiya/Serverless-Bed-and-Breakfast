@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import {
   Button,
   Container,
@@ -8,8 +8,14 @@ import {
 import Box from "@mui/material/Box";
 import UserPool from "../authentication/UserPool";
 import {useNavigate} from 'react-router-dom';
+import {getEmail} from '../../localStorage/index';
 
 const Profile = () => {
+
+  useEffect(()=>{
+      fetch(`https://lffyvdvm5hquei7oi7w37fz44u0efnfp.lambda-url.us-east-1.on.aws/?email=${getEmail()}`)
+  },[])
+  
   const navigate = useNavigate()
   const logoutHandler = ()=>{
     const congnitoUser = UserPool.getCurrentUser()

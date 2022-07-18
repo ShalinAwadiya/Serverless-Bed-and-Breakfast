@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./notify.css";
-
+import {getEmail} from '../../localStorage/index';
 const Notify = () => {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(false);
@@ -16,7 +16,7 @@ const Notify = () => {
   //   };
   useEffect(() => {
     fetch(
-      "https://xldvx2k4buvuhyy4pawwz2lz2m0gxcvh.lambda-url.us-east-1.on.aws?email=dhruv@email.com",
+      `https://xldvx2k4buvuhyy4pawwz2lz2m0gxcvh.lambda-url.us-east-1.on.aws?email=${getEmail()}`,
       {
         method: "GET",
       }
