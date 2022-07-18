@@ -1,9 +1,13 @@
-.support{
-    height: 100px;
-    width: 100px;
-    position: fixed;
+
+
+.chat-wrapper{
+    cursor: pointer;
+    width: 84px;
+    height: 84px;
+    box-shadow: 0px 0px 16px 6px rgba(0,0,0,0.33);
+    background-image: 'url(https: //images.unsplash.com/photo-1577563908411-5077b6dc7624?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Ym90fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60)';
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 84px;
     border-radius: 50%;
-    background-color: brown;
-    display: flex;
-    justify-content: space-evenly;
 }

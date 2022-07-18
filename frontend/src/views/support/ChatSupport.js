@@ -91,7 +91,7 @@ function MessageBox (props){
 const ChatSupport = ()=>{
     const [botName,setbotName] = useState("");
     return(
-        <div className="">
+        <div className="chat-wrapper">
             <MessageBox></MessageBox>
         </div>
     )
