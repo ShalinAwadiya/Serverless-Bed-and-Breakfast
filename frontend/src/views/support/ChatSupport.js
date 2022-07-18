@@ -1,6 +1,5 @@
-
 import { Grid, Table, TableContainer, TableRow } from "@mui/material";
-import React,{useState} from "react";
+import React,{useState, useRef, useEffect} from "react";
 import './support.css';
 
 import { TableCell } from "@mui/material";
@@ -14,6 +13,13 @@ function MessageBox (props){
     const [messages, updateMessages] = useState([{message: "WELCOME"}]);
     const [currentMsg,setCurrentMsg] = useState("");
     const [currentBot, setCurrentBot] = useState("None")
+    
+    // 
+    const messageRef = useRef(null);
+    useEffect(()=>{
+        messageRef.current?.scrollIntoView()
+    },[messages])
+    //
 
     function getBotResponse(){
         console.log(currentBot)
@@ -77,12 +83,12 @@ function MessageBox (props){
 
                 </TableContainer>
             </Grid>
+            <div ref={messageRef}/>
             <Grid>
-                <form>
+                <form style={{'position':'relative','bottom':'0'}}>
                     <TextField id="userMessage" label="Message" variant="outlined"  onChange={(e)=>setCurrentMsg(e.target.value)}/>
                     <Button variant="outlined" onClick={sendMessageToBot}>Send Message</Button>
                 </form>
-                
             </Grid>
             </>
     )
@@ -92,10 +98,9 @@ function MessageBox (props){
 const ChatSupport = ()=>{
     const [botName,setbotName] = useState("");
     return(
-        <div className="">
+        <div>
             <MessageBox></MessageBox>
         </div>
->>>>>>> chatbotFE
     )
 }
 
