@@ -16,7 +16,7 @@ import Food from './views/Food/Food';
 
 // import Chat from './views/chatbot/Chat';
 import Admin from './views/admin';
-import Notify from './views/notifications/Notify';
+import Notify from './views/notify/Notify';
 import DisplayTour from './views/tour/DisplayTour';
 import Support from './views/support/Support';
 
@@ -62,7 +62,7 @@ function App() {
             <Route exact path='/admin' element={<Admin />} />
             <Route exact path='/notify' element={<Notify />} />
             <Route exact path='/displaytour' element={<DisplayTour />} />
-            <Route exact path='/food-cart' element={<Cart />} />
+            {/* <Route exact path='/food-cart' element={<Cart />} /> */}
             {/* Routes that require login */}
             <Route
               path="*"
