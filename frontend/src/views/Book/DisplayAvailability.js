@@ -15,8 +15,8 @@ const DisplayAvailability = () => {
   },[])
   
   const fetchAvailability = async ()=>{
-    console.log(bookData.date)
-    fetch(`https://jj6eksvjm6vppixjgmuyjizbma0qqxjm.lambda-url.us-east-1.on.aws/?startDate=${bookData.date}&noOfDays=${bookData.days}&roomType=${bookData.type}`,{
+    console.log(bookData.type); 
+    fetch(`https://jj6eksvjm6vppixjgmuyjizbma0qqxjm.lambda-url.us-east-1.on.aws/?startDate=${bookData.date}&noOfDays=${bookData.days}&roomType=${bookData.type.split(",")[0]}`,{
       method:'GET'
     }).then(response=>response.json()).then(result=>{
       setAvailability(result.availability);
@@ -57,7 +57,7 @@ const DisplayAvailability = () => {
     <div style={{"display":"flex","justifyContent":"space-evenly","flexWrap":"wrap"}}>
       {availability.map((room,index) => {
         return room.available.length === parseInt(bookData.days) ?
-             <RoomCard key={index} data={room} bookData={bookData} /> : <></>;
+             <RoomCard key={index} data={room} bookData={bookData} price={bookData.type.split(",")[1]} /> : <></>;
       })}
     </div> 
     </>

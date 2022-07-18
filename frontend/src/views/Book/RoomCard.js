@@ -3,7 +3,7 @@ import "./Room.css";
 import { useNavigate } from "react-router-dom";
 import { getEmail } from "../../localStorage";
 
-const RoomCard = ({ data, bookData }) => {
+const RoomCard = ({ data, bookData, price }) => {
   const url = "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVkfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60";
   const navigate = useNavigate();
   console.log(bookData);
@@ -44,7 +44,7 @@ const RoomCard = ({ data, bookData }) => {
             <h4 class="text-uppercase">{data.room}</h4>
             <div class="mt-5">
               <h5 class="text-uppercase mb-0">Beds : 5</h5>
-              <h1 class="main-heading mt-0">$500</h1>
+              <h1 class="main-heading mt-0">${price}</h1>
               <div class="d-flex flex-row user-ratings">
                 <div class="ratings">
                   <i class="fa fa-star"></i>

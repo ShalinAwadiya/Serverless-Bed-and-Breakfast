@@ -8,7 +8,7 @@ const RoomBook = () => {
   const [type,setType] = useState("")
   
   // const thisis=()=>{
-  //   console.log(date)
+  //   console.log(type)
   //   navigate("/displayroom", { state: { days: days, date: date, type:type } });
   // }
   return (
@@ -40,10 +40,11 @@ const RoomBook = () => {
         <div className="form-group">
           <label for="rooms">Type of Room</label>
           <select className="form-select" name="rooms" id="rooms"  onChange={(e)=>setType(e.target.value)}>
-            <option value="delux">delux</option>
-            <option value="semidelux">semidelux</option>
-            <option value="skyview">skyview</option>
-            <option value="general">general</option>
+            <option>--Select one--</option>
+            <option value="delux,200">delux</option>
+            <option value="semidelux,150">semidelux</option>
+            <option value="skyview,500">skyview</option>
+            <option value="general,50">general</option>
           </select>
         </div>
 
