@@ -6,13 +6,21 @@ import {
   Toolbar,
 } from "@mui/material";
 import Box from "@mui/material/Box";
+import UserPool from "../authentication/UserPool";
 import {useNavigate} from 'react-router-dom';
 
 const Profile = () => {
   const navigate = useNavigate()
   const logoutHandler = ()=>{
-    localStorage.removeItem("email")
-    navigate('/login')
+    const congnitoUser = UserPool.getCurrentUser()
+    if(congnitoUser != null){
+      congnitoUser.signOut();
+      localStorage.removeItem("session");
+      localStorage.removeItem("email");
+      localStorage.removeItem("user_id");
+      console.log("logged out.")
+      navigate('/login')
+    }
   }
 
   return (

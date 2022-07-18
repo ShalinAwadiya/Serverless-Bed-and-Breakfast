@@ -1,7 +1,7 @@
 import React from "react";
 import './support.css';
 import ChatSupport from "./ChatSupport";
-import { Scrollbars } from 'react-custom-scrollbars';
+// import { Scrollbars } from 'react-custom-scrollbars';
 const SupportWindow = (props)=>{
     return(
         // <Scrollbars style={{ width: 500, height: 300 }}>

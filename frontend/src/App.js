@@ -13,14 +13,11 @@ import { Protected } from './views/authentication/Protected';
 import LoginStage3 from './views/authentication/Login-3';
 import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
-
-// import Chat from './views/chatbot/Chat';
-import Admin from './views/admin';
-import Notify from './views/notifications/Notify';
-import DisplayTour from './views/tour/DisplayTour';
+import ChatSupport from './views/support/ChatSupport';
+import Admin from './views/admin/adminPage';
 import Support from './views/support/Support';
-
-
+import Cart from "./views/Food/Cart";
+import DisplayTour from './views/tour/DisplayTour';
 const MainLayout = () => (
   <>
     <div className="App">
@@ -60,9 +57,8 @@ function App() {
             <Route exact path='/food' element={<Food />} />
             <Route exact path='/summary' element={<Summary type='room ' />} />
             <Route exact path='/admin' element={<Admin />} />
-            <Route exact path='/notify' element={<Notify />} />
-            <Route exact path='/displaytour' element={<DisplayTour />} />
             <Route exact path='/food-cart' element={<Cart />} />
+            <Route exact path="/displaytour" element={<DisplayTour />}></Route>
             {/* Routes that require login */}
             <Route
               path="*"
