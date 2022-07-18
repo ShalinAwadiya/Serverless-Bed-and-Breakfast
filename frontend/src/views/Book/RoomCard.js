@@ -1,9 +1,40 @@
 import React from "react";
-import './Room.css';
+import "./Room.css";
 import { useNavigate } from "react-router-dom";
+import { getEmail } from "../../localStorage";
 
-const RoomCard = ({ data }) => {
+const RoomCard = ({ data, bookData }) => {
   const navigate = useNavigate();
+  console.log(bookData);
+  const bookIdgenerator = () => {
+    return Math.floor(Math.random() * 10000);
+  };
+
+  const dateFormat = (date) =>{
+    var newDate = date.split('-');
+    return newDate[2].toString()+newDate[1].toString()+newDate[0].toString()
+  }
+  const bookRoomHanlder = () => {
+    console.log("started..");
+    
+    fetch('https://us-central1-authentic-codex-352820.cloudfunctions.net/HotelManagementTopic',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        "email":"def@dal.ca", //taking from localstorage
+        "roomNo":"201", //from data
+        "price": "520", // from data
+        "bookingDate": dateFormat(bookData.date), // from bookData
+        "bookingDays":10, //from bookdata
+        "bookingId": parseInt(bookIdgenerator()),
+        RoomType:"delux"
+      })
+    }).then(response=>response.json()).then(result=>console.log("Result::",result))
+    console.log("SESSION:",getEmail())
+    navigate("/summary", { state: { data: data, type: "room" } });
+  };
   return (
     <div class="height d-flex justify-content-center align-items-center">
       <div class="card p-3">
@@ -29,13 +60,11 @@ const RoomCard = ({ data }) => {
           </div>
         </div>
 
-        
-
         <p>A great option weather you are at office or at home. </p>
 
-        <button class="btn btn-danger" onClick={()=>{
-          navigate('/summary',{state:{data:data,type:'room'}})
-        }}>Book</button>
+        <button class="btn btn-danger" onClick={() => bookRoomHanlder()}>
+          Book
+        </button>
       </div>
     </div>
   );

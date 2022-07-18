@@ -14,7 +14,12 @@ import LoginStage3 from './views/authentication/Login-3';
 import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
 
-import Chat from './views/chatbot/Chat';
+// import Chat from './views/chatbot/Chat';
+import Admin from './views/admin';
+import ChatSupport from './views/support/ChatSupport';
+import DisplayTour from './views/tour/DisplayTour';
+import Cart from './views/Food/Cart';
+import Notify from './views/notify/Notify';
 
 const MainLayout = () => (
   <>
@@ -44,7 +49,7 @@ function App() {
         <Routes>
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/register' element={<Register />} />
-          <Route exact path='/bot' element={<Chat />} />
+          <Route exact path='/bot' element={<ChatSupport />} />
           <Route element={<MainLayout />}>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/profile' element={<Profile />} />
@@ -54,6 +59,10 @@ function App() {
             <Route exact path='/caesar-cipher' element={<LoginStage3 />} />
             <Route exact path='/food' element={<Food />} />
             <Route exact path='/summary' element={<Summary type='room ' />} />
+            <Route exact path='/admin' element={<Admin />} />
+            <Route exact path='/notify' element={<Notify />} />
+            <Route exact path='/displaytour' element={<DisplayTour />} />
+            <Route exact path='/food-cart' element={<Cart />} />
             {/* Routes that require login */}
             <Route
               path="*"

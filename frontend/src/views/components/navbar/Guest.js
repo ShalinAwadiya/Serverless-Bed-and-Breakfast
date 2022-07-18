@@ -1,3 +1,4 @@
+import { Box, Button } from "@mui/material";
 import React, { useEffect } from "react";
 import { CgProfile } from 'react-icons/cg';
 const Guest = ({ isRegistered }) => {
@@ -9,7 +10,17 @@ const Guest = ({ isRegistered }) => {
         )
     } else {
         return (
-            <a className="btn btn-primary" href="/register">REGISTER</a>
+            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                <Button
+                    key='Bot'
+                    component="a"
+                    href='/login'
+                    variant='outlined'
+                    sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+                >
+                    LOGIN
+                </Button>
+            </Box>
         )
     }
 }
