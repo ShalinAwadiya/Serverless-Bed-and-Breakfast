@@ -4,6 +4,8 @@ const dynamoClient = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async (event) => {
 
+    console.log(event);
+
     const request = JSON.parse(event.body);
     console.log({ request });
 
@@ -41,6 +43,7 @@ exports.handler = async (event) => {
         fetchedCartDetails.Item.food = updatedFoodItems;
 
         updateCart.Item = fetchedCartDetails.Item;
+        updateCart['Item'].totalPrice = parseInt(fetchedCartDetails.Item.totalPrice) + parseInt(request.totalPrice);
 
         console.log('Food Cart Params: ', updateCart);
 
@@ -62,13 +65,14 @@ exports.handler = async (event) => {
     } else {
         //Create a new cart for the user based on userSub
         let food = [];
-        food.push(request.push);
+        food.push(request.food);
 
         var addToCart = {
             TableName: "food_cart",
             Item: {
                 userSub: request.userSub,
                 email: request.email,
+                totalPrice: request.totalPrice,
                 food: food
             }
         };

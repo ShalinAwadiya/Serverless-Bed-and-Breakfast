@@ -4,7 +4,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Button, Container, Toolbar } from "@mui/material";
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Guest from './Guest';
 import { getEmail } from '../../../localStorage/index';
 
@@ -16,7 +15,7 @@ export default function NavBar() {
     }
   }, [])
   return (
-    <AppBar class="bg-light" position="static">
+    <AppBar class="navbar-light bg-light" position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

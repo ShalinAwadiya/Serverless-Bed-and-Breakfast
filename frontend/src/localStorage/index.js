@@ -24,9 +24,9 @@ export const getAdmin = () => {
 }
 
 export const setEmail = (email) => {
-    return localStorage.setItem("email",email.toString());
+    return localStorage.setItem("email", email.toString());
 }
 
-export const getEmail = () =>{
+export const getEmail = () => {
     return localStorage.getItem("email");
 }

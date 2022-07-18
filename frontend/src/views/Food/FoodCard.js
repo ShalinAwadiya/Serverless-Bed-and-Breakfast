@@ -13,6 +13,7 @@ const FoodCard = ({ item }) => {
   const addToCart = (item) => {
     let foodItem = {
       name: item.name,
+      basePrice: item.price,
       price: item.price,
       quantity: 1
     }
@@ -24,6 +25,7 @@ const FoodCard = ({ item }) => {
       var request = {
         userSub: getSession().idToken.payload.sub,
         email: getSession().idToken.payload.email,
+        totalPrice: item.price,
         food: foodItem
       }
       console.log(JSON.stringify(request));

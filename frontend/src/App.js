@@ -19,7 +19,7 @@ import Admin from './views/admin';
 import ChatSupport from './views/support/ChatSupport';
 import Notify from './views/notifications/Notify';
 import DisplayTour from './views/tour/DisplayTour';
-import FoodCart from './views/Food/FoodCart';
+import Cart from './views/Food/Cart';
 
 const MainLayout = () => (
   <>
@@ -62,7 +62,7 @@ function App() {
             <Route exact path='/admin' element={<Admin />} />
             <Route exact path='/notify' element={<Notify />} />
             <Route exact path='/displaytour' element={<DisplayTour />} />
-            <Route exact path='/food-cart' element={<FoodCart />} />
+            <Route exact path='/food-cart' element={<Cart />} />
             {/* Routes that require login */}
             <Route
               path="*"
