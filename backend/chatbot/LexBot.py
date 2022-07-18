@@ -86,16 +86,14 @@ class ParentBot(ProcessUserQueries):
     def makeResponse(self, message, sessionId):
         response = {}
         bot_response = self.triggerBot(message, sessionId)
-        # response['intent'] = bot_response
-        # print(bot_response)
         if message.lower().strip() == "hello":
             response['nextMessage'] = self.giveNextMessage(bot_response)
+            setUserBotSelection("None")
         elif self.isStateForFulfilment(bot_response):
             response['nextMessage'] = self.giveNextMessage(bot_response)
             setUserBotSelection(self.getSlotValue(bot_response['sessionState']['intent'], "IntentType"))
         else:
             response['nextMessage'] = self.giveNextMessage(bot_response)
-
         return response
 
 
@@ -122,10 +120,8 @@ class BookingRoom(ProcessUserQueries):
         if self.isRequestConfirmed(bot_response):
             # response['nextMessage'] = self.giveNextMessage(bot_response)
             response['nextMessage'] = self.bookRoom(sessionId, bot_response)
-
         else:
             response['nextMessage'] = self.giveNextMessage(bot_response)
-
         return response
 
     def getRoomAvailability(self, botResponse):
@@ -204,19 +200,30 @@ class OrderFood(ProcessUserQueries):
             FoodPrice = {"coffee": 2, "tea": 2, "bagel": 4, "wrap": 5}
 
             url = "https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/"
-            payload = {}
-            payload['userSub'] = "1111111111"
-            payload['email'] = email
-            payload['food'] = {"name": self.getSlotValue(bot_response['sessionState']['intent'], "FoodOrderDish"),
-                            #    "price": FoodPrice[
-                            #        self.getSlotValue(bot_response['sessionState']['intent'], "FoodOrderDish")],
-                                "price": 1,
-                               "qunatity": 1}
-            payload['totalPrice'] = 2
+            payload = {
+                "userSub": "f55b1743-2f67-487f-40bc23268bc89",
+                "email": "dddddddddddd@dal.ca",
+                "totalPrice": 4,
+                "food": {
+                    "name": "Egg McMuffin",
+                    "basePrice": 2,
+                    "price": 4,
+                    "quantity": 2
+                }
+            }
+
+            # payload['userSub'] = "1111111111"
+            # payload['email'] = email
+            # payload['food'] = {"name": self.getSlotValue(bot_response['sessionState']['intent'], "FoodOrderDish"),
+            #                 #    "price": FoodPrice[
+            #                 #        self.getSlotValue(bot_response['sessionState']['intent'], "FoodOrderDish")],
+            #                     "price": 1,
+            #                    "qunatity": 1}
+            # payload['totalPrice'] = 2
 
             # requests.post(url, data=payload, headers=headers)
         
-            return requests.post(url=url, data=payload, headers=headers)
+            return requests.post(url=url, data=json.dumps(payload), headers=headers)
         except Exception as e:
             return str(e)
 
@@ -307,15 +314,10 @@ class SearchRoom(ProcessUserQueries):
         response = {}
         bot_response = self.triggerBot(message, sessionId)
         # response['debug'] = bot_response
-        if self.isRequestConfirmed(bot_response):
-            # response['nextMessage'] = self.giveNextMessage(bot_response)
-            # response['nextMessage'] += str(self.getRoomAvailability(bot_response))
+        if self.isRequestConfirmed(bot_response):    
             response["nextMessage"] = "Your Search is : " + self.getRoomAvailability(bot_response)
-
         elif self.isStateForFulfilment(bot_response):
             response['nextMessage'] = self.giveNextMessage(bot_response)
-            # response['nextMessage'] += str(self.getRoomAvailability(bot_response))
-
         else:
             response['nextMessage'] = self.giveNextMessage(bot_response)
 
