@@ -28,7 +28,7 @@
 
 .chat {
     height: 70vh;
-    width: 30%;
+    width: 25%;
     margin: auto;
     margin-top: 1rem;
     position: relative;
@@ -54,3 +54,13 @@
     margin: 5px;
 }
 
+.message-box{
+    margin-left: 1rem;
+    border-radius: 5px;
+    border: 2px solid #73AD21;
+    text-align: center;
+    width: fit-content;
+    height: 2rem;
+    margin: 0.25rem;
+    padding: 0.20rem;
+}
