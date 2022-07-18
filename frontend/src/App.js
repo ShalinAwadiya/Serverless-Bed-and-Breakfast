@@ -14,12 +14,12 @@ import LoginStage3 from './views/authentication/Login-3';
 import Summary from './views/Summary/Summary';
 import Food from './views/Food/Food';
 
-import Chat from './views/chatbot/Chat';
+// import Chat from './views/chatbot/Chat';
 import Admin from './views/admin';
 import ChatSupport from './views/support/ChatSupport';
-import Notify from './views/notifications/Notify';
 import DisplayTour from './views/tour/DisplayTour';
 import Cart from './views/Food/Cart';
+import Notify from './views/notify/Notify';
 
 const MainLayout = () => (
   <>
