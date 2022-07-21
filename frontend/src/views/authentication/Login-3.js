@@ -6,7 +6,6 @@ import randomWords from "random-words";
 import { getSession } from "../../localStorage";
 
 const LoginStage3 = () => {
-    const { state } = useLocation();
     const navigate = useNavigate();
 
     const [text, setText] = useState(randomWords({ exactly: 1, maxLength: 15 }));
@@ -19,7 +18,7 @@ const LoginStage3 = () => {
 
         axios({
             method: 'get',
-            url: 'https://us-east1-csci-5410-s22-352404.cloudfunctions.net/Caesar-Cipher?text=' + text + '&key=' + state.key,
+            url: 'https://us-east1-csci-5410-s22-352404.cloudfunctions.net/Caesar-Cipher?text=' + text + '&userSub=' + getSession().idToken.payload.sub,
         }).then((res) => {
             if (res.data.solution === data.get('caesarKey').toUpperCase()) {
                 console.log('Caesar Cipher authentication successful');
@@ -41,6 +40,7 @@ const LoginStage3 = () => {
         });
     }
 
+    //Add an entry in access details report
     const updateAccessDetails = () => {
         const session = getSession();
         console.log({ session });
@@ -60,7 +60,7 @@ const LoginStage3 = () => {
                 payload: payload
             }
         }).then((res) => {
-            console.log('{ res }');
+            console.log({ res });
             navigate('/profile');
         }).catch((err) => {
             console.log(err);

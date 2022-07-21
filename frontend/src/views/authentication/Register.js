@@ -167,7 +167,7 @@ const Register = () => {
             body: JSON.stringify(registration_request_GCP),
           };
           const postResponseGCP = await fetch(
-            "https://us-east1-serverless-project-357002.cloudfunctions.net/userRegistration",
+            "https://us-east1-csci-5410-s22-352404.cloudfunctions.net/registration",
             requestOptionsGCP
           );
           if (postResponseAWS && postResponseGCP) {
