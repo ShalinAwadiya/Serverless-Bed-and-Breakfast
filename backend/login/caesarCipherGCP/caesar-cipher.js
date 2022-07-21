@@ -1,16 +1,34 @@
+const { initializeApp } = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
+
+initializeApp();
+const db = getFirestore();
+
 /**
  * Responds to any HTTP request.
  *
  * @param {!express:Request} req HTTP request context.
  * @param {!express:Response} res HTTP response context.
  */
-exports.caesarCipher = (req, res) => {
-  let cipherKey = req.query.key;
+exports.caesarCipher = async (req, res) => {
+  let userSub = req.query.userSub;
   let text = req.query.text.toUpperCase();
-  if (!cipherKey || !text) {
+  if (!(userSub && text)) {
     res.status(400).send(JSON.stringify({ message: 'Missing required field(s) or value(s)' }));
   }
 
+  //GET caesar cipher key from Firestore using userSub
+  let cipherKey = 0;
+  await db.collection('Users')
+    .where('userSub', '==', userSub)
+    .get()
+    .then(document => {
+      document.forEach(doc => {
+        cipherKey = doc.data().caesarKey
+      })
+    });
+
+  console.log({ cipherKey });
   const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var decryptedText = '';
   for (var i = 0; i < text.length; i++) {

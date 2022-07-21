@@ -23,7 +23,7 @@ const LoginStage2 = () => {
                 data.get('answer2') === item.answer2 &&
                 data.get('answer3') === item.answer3) {
                 console.log('Security Question and Answers Successful');
-                navigate('/caesar-cipher', { state: { key: item.caesarKey } })
+                navigate('/caesar-cipher')
             } else {
                 setError('Some of the answers might be incorrect. Please recheck your answers.');
             }

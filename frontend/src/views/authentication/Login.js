@@ -7,9 +7,7 @@ import { getSession, setAdmin, setSession } from '../../localStorage';
 
 const Login = () => {
   const navigate = useNavigate();
-
   const { authenticate } = useContext(AuthContext)
-
   const [error, setError] = React.useState('')
 
   const handleSubmit = (event) => {
