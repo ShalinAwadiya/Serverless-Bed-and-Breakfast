@@ -11,7 +11,7 @@ def lambda_handler(event, context):
     answer1 = data['answer1']
     answer2 = data['answer2']
     answer3 = data['answer3']
-    caesarKey = data['caesarKey']
+   
     
     dynamodb = boto3.resource('dynamodb')   
     table = dynamodb.Table('users')
@@ -26,7 +26,6 @@ def lambda_handler(event, context):
             'email': email,
             'answer1': answer1,
             'answer2': answer2,
-            'answer3': answer3,
-            'caesarKey': caesarKey
+            'answer3': answer3
         })
         print(putresponse)
