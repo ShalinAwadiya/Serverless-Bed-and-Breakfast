@@ -18,3 +18,9 @@
     margin-top: 5px;
 
 } */
+
+.sidebar {
+    height: 100%;
+    width: 300px;
+    background-color: red;
+}
