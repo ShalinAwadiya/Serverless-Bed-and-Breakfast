@@ -51,6 +51,9 @@ const ProtectedRoutes = () => {
   return (
     <Routes>
       {/* Define routes here that need login */}
+      <Route exact path='/food' element={<Food />} />
+      <Route exact path='/food-cart' element={<Cart />} />
+      <Route exact path="/displaytour" element={<DisplayTour />}></Route>
     </Routes>
   )
 }
@@ -67,20 +70,17 @@ function App() {
             <Route exact path='/charts' element={<Admin />} />
             <Route exact path='/invoice' element={<Invoice />} />
           </Route>
-          
-           {/* <Route exact path='/bot' element={<ChatSupport />} />  */}
+
+          {/* <Route exact path='/bot' element={<ChatSupport />} />  */}
           <Route element={<MainLayout />}>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/profile' element={<Profile />} />
-            <Route exact path='/bookroom' element={<RoomBook />} />
             <Route exact path='/displayroom' element={<DisplayAvailability />} />
             <Route exact path='/security-questions' element={<LoginStage2 />} />
             <Route exact path='/caesar-cipher' element={<LoginStage3 />} />
-            <Route exact path='/food' element={<Food />} />
             <Route exact path='/summary' element={<Summary type='room ' />} />
-            <Route exact path='/food-cart' element={<Cart />} />
             <Route exact path='/notify' element={<Notify />} />
-            <Route exact path="/displaytour" element={<DisplayTour />}></Route>
+            <Route exact path='/bookroom' element={<RoomBook />} />
 
             {/* Routes that require login */}
             <Route

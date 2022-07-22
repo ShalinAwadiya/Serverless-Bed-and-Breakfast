@@ -12,18 +12,18 @@ const LoginStage2 = () => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
 
-        console.log(getSession().idToken.payload.sub);
+        //Call the validateSecurityAnswers Lambda
         axios({
             method: 'get',
-            url: 'https://zxl63mr6rydydqbnkwbe3ccuzq0cssfg.lambda-url.us-east-1.on.aws?userSub=' + (getSession().idToken.payload.sub),
+            url: 'https://xn2s5fwwbmnucawsewwwbrymxi0bwkio.lambda-url.us-east-1.on.aws/?'
+                + 'userSub=' + getSession().idToken.payload.sub
+                + '&answer1=' + data.get('answer1')
+                + '&answer2=' + data.get('answer2')
+                + '&answer3=' + data.get('answer3')
         }).then((res) => {
             console.log({ res });
-            const item = res.data.user.Item;
-            if (data.get('answer1') === item.answer1 &&
-                data.get('answer2') === item.answer2 &&
-                data.get('answer3') === item.answer3) {
-                console.log('Security Question and Answers Successful');
-                navigate('/caesar-cipher')
+            if (Boolean(res.data.validated) === Boolean(true)) {
+                navigate('/caesar-cipher');
             } else {
                 setError('Some of the answers might be incorrect. Please recheck your answers.');
             }
