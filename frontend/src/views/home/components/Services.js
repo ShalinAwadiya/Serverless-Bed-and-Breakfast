@@ -2,7 +2,7 @@ import React from "react";
 
 const Services = () => {
   return (
-    <div style={{"display":"flex","justifyContent":"space-evenly"}}>
+    <div style={{ "display": "flex", "justifyContent": "space-evenly" }}>
       <div
         className="card text-center"
         style={{ width: "20%", margin: "2rem" }}
@@ -16,15 +16,14 @@ const Services = () => {
         <div className="card-body">
           <h5 className="card-title">Book a Room</h5>
           <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            View available rooms and book as per your convenience
           </p>
           <a href="/bookroom" className="btn btn-primary" style={{ width: "50%" }}>
             Book
           </a>
         </div>
       </div>
-     {/* ======== */}
+      {/* ======== */}
       <div
         className="card text-center"
         style={{ width: "20%", margin: "2rem" }}
@@ -38,8 +37,7 @@ const Services = () => {
         <div className="card-body">
           <h5 className="card-title">Order Food</h5>
           <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Order breakfast from the Kitchen
           </p>
           <a href="/food" className="btn btn-primary" style={{ width: "50%" }}>
             Order
@@ -60,8 +58,7 @@ const Services = () => {
         <div className="card-body">
           <h5 className="card-title">Book a Tour</h5>
           <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Request a Tour from the Tour Operator
           </p>
           <a href="/displaytour" className="btn btn-primary" style={{ width: "50%" }}>
             Book
