@@ -24,7 +24,7 @@ export default function NavBar() {
             href="/"
             sx={{
               mr: 5,
-              display: { xs: 'none', md: 'flex', flexGrow: 1 },
+              display: { xs: 'none', md: 'flex' },
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -32,7 +32,7 @@ export default function NavBar() {
             Bed & Breakfast
           </Typography>
 
-          <Box sx={{ display: { xs: 'none', md: 'flex', flexGrow: 1 } }}>
+          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
             <Button
               key='cart'
               component="a"
@@ -44,7 +44,9 @@ export default function NavBar() {
             </Button>
           </Box>
 
-          <Guest isRegistered={isRegistered} />
+          <Box sx={{ display: { xs: 'none', md: 'flex', ml: 10 } }}>
+            <Guest isRegistered={isRegistered} />
+          </Box>
         </Toolbar>
       </Container>
     </AppBar >

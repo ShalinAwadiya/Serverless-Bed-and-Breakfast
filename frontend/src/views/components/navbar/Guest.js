@@ -1,7 +1,8 @@
 import { Box, Button } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import { CgProfile } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
+
 const Guest = ({ isRegistered }) => {
     const navigate = useNavigate();
     if (isRegistered) {
@@ -12,7 +13,6 @@ const Guest = ({ isRegistered }) => {
         )
     } else {
         return (
-            // <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <Button
                 key='Bot'
                 component="a"
@@ -24,7 +24,6 @@ const Guest = ({ isRegistered }) => {
             >
                 LOGIN
             </Button>
-            // </Box>
         )
     }
 }
