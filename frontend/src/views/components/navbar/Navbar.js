@@ -32,21 +32,9 @@ export default function NavBar() {
             Bed & Breakfast
           </Typography>
 
-          {/* <Box sx={{ display: { xs: 'none', md: 'flex', flexGrow: 1 } }}>
-            <Button
-              key='Bot'
-              component="a"
-              href='/bot'
-              variant='outlined'
-              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
-            >
-              CHATBOT
-            </Button>
-          </Box> */}
-
           <Box sx={{ display: { xs: 'none', md: 'flex', flexGrow: 1 } }}>
             <Button
-              key='Bot'
+              key='cart'
               component="a"
               href='/food-cart'
               variant='outlined'
