@@ -53,6 +53,9 @@ const Authentication = props => {
         const user = UserPool.getCurrentUser();
         if (user) {
             user.signOut();
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('session');
+            localStorage.removeItem('email');
         }
     }
 

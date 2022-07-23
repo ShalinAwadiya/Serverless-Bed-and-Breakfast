@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Grid, Link, TextField, Typography } from '@mui/material';
-import { getSession, setAdmin, setSession } from '../../localStorage';
+import { getSession, setSession } from '../../localStorage';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,10 +18,8 @@ const Login = () => {
         setSession(CognitoUserSession);
         console.log(getSession());
         if (getSession().idToken.payload.email === 'admin@dal.ca') {
-          setAdmin(Boolean(true));
           navigate('/admin')
         } else {
-          setAdmin(Boolean(false));
           navigate('/security-questions')
         }
       })

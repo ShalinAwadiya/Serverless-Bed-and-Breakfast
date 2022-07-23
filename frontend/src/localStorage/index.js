@@ -15,18 +15,10 @@ export const getSession = () => {
     return JSON.parse(localStorage.getItem('session'));
 }
 
-export const setAdmin = (admin) => {
-    localStorage.setItem('admin', admin);
-}
-
-export const getAdmin = () => {
-    return localStorage.getItem('admin');
-}
-
 export const setEmail = (email) => {
-    return localStorage.setItem("email",email.toString());
+    return localStorage.setItem("email", email.toString());
 }
 
-export const getEmail = () =>{
+export const getEmail = () => {
     return localStorage.getItem("email");
 }

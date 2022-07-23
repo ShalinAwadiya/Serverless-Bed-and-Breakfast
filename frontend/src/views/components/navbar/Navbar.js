@@ -15,7 +15,7 @@ export default function NavBar() {
     if (getEmail()) {
       setIsRegistered(true)
     }
-  }, [])
+  }, [isRegistered])
   return (
     <AppBar class="navbar-light bg-light" position="static">
       <Container maxWidth="xl">
@@ -59,7 +59,7 @@ export default function NavBar() {
           </Box>
 
           <Box sx={{ display: { xs: 'none', md: 'flex', ml: 10 } }}>
-            <Guest isRegistered={isRegistered} />
+            <Guest isRegistered={isRegistered} setIsRegistered={setIsRegistered} />
           </Box>
         </Toolbar>
       </Container>
