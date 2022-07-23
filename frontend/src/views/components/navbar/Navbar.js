@@ -58,6 +58,18 @@ export default function NavBar() {
             </Button>
           </Box>
 
+          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
+            <Button
+              key='cart'
+              component="a"
+              href='/food-cart'
+              variant='outlined'
+              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+            >
+               Feedback
+            </Button>
+          </Box>
+
           <Box sx={{ display: { xs: 'none', md: 'flex', ml: 10 } }}>
             <Guest isRegistered={isRegistered} setIsRegistered={setIsRegistered} />
           </Box>

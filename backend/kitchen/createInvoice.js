@@ -33,7 +33,7 @@ const createInvoice = async (request) => {
                 userSub: request.userSub,
                 food: request.food,
                 totalPrice: request.totalPrice,
-                date: new Date(Date.now()).toLocaleString('en-GB')
+                date: new Date(Date.now()).toLocaleString('en-US', { timeZone: 'America/Halifax' })
             }
         };
         const data = await dynamoClient.put(invoiceParams).promise();
