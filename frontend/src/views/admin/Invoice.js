@@ -25,23 +25,26 @@ const Invoice = () => {
           </Stack>
         </Stack>
         <hr />
-        {item.food.map((element) => {
-          return (
-            <Container maxWidth="xs" sx={{ p: 4 }}>
-              <Paper sx={{ p: 2 }}>
-                <Stack direction={'column'} spacing={2}>
-                  <Stack direction={'row'} spacing={30}> <Stack>
-                    <p>{element.name}</p>
-                  </Stack>
-                    <Stack>
-                      <p>${element.price}</p>
+        <Container maxWidth="sm" sx={{ p: 4 }}>
+          <Paper sx={{ p: 2 }}>
+            <Stack direction={'column'}>
+              {
+                item.food.map((element) => {
+                  return (
+                    <Stack direction={'row'} spacing={20}>
+                      <Stack sx={{ pl: 1, pt: 1, minWidth: 150, maxWidth: 150, textAlign: 'left' }}>
+                        {element.name}
+                      </Stack>
+                      <Stack sx={{ pl: 20, pt: 1, minWidth: 40, maxWidth: 40 }}>
+                        ${element.price}
+                      </Stack>
                     </Stack>
-                  </Stack>
-                </Stack>
-              </Paper>
-            </Container>
-          );
-        })}
+                  );
+                })
+              }
+            </Stack>
+          </Paper>
+        </Container>
         <hr />
         <Stack direction={'row'} spacing={10} sx={{ display: 'flex', justifyContent: 'right' }}>
           <Stack>
@@ -52,7 +55,7 @@ const Invoice = () => {
           </Stack>
         </Stack>
       </div>
-    </div>
+    </div >
   );
 };
 
