@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Grid, Snackbar } from "@mui/material";
+
 import FoodCard from "./FoodCard";
 import "./Food.css";
-import axios from "axios";
-import { Grid } from "@mui/material";
 
 const Food = () => {
   const [data, setData] = useState([]);
+  const [added, setAdded] = useState(false);
 
   useEffect(() => {
     axios({
@@ -17,14 +19,17 @@ const Food = () => {
     });
   }, []);
 
+
   return (
-    <Grid container spacing={3} sx={{ p: 2 }}>
-      {
-        data.map((dish, index) => {
-          return <FoodCard key={index} item={dish} />;
-        })
-      }
-    </Grid>
+    <>
+      <Grid container spacing={3} sx={{ p: 2 }}>
+        {
+          data.map((dish, index) => {
+            return <FoodCard key={index} item={dish} setAdded={setAdded} />;
+          })
+        }
+      </Grid>
+    </>
   );
 };
 
