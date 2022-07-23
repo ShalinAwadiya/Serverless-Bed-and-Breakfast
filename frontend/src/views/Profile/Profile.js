@@ -19,7 +19,7 @@ const Profile = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch(
-      `https://lffyvdvm5hquei7oi7w37fz44u0efnfp.lambda-url.us-east-1.on.aws/?email=V2Check@dal.ca`,
+      `https://lffyvdvm5hquei7oi7w37fz44u0efnfp.lambda-url.us-east-1.on.aws/?email=${getEmail()}`,
       {
         method: "GET",
       }
@@ -42,43 +42,7 @@ const Profile = () => {
   };
 
   return (
-    // <section class="vh-100" style={{ "background-color": "#ddd" }}>
-    //   <div class="container py-5 h-100">
-    //     <div class="row d-flex justify-content-center align-items-center h-100">
-    //       <div class="col-md-12 col-xl-4">
-    //         <div class="card" style={{ "border-radius": "15px" }}>
-    //           <div class="card-body text-center">
-    //             <div class="mt-3 mb-4">
-    //               <img
-    //                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-    //                 class="rounded-circle img-fluid"
-    //                 style={{ width: "100px" }}
-    //                 alt = "..."
-    //               />
-    //             </div>
-    //             <h4 class="mb-2">Julie L. Arsenault</h4>
-    //             <Box sx={{ display: { xs: "none", md: "flex", flexGrow: 1 } }}>
-    //               <Button
-    //                 key="Bot"
-    //                 component="a"
-    //                 variant="outlined"
-    //                 sx={{
-    //                   my: 2,
-    //                   color: "black",
-    //                   display: "block",
-    //                   fontSize: 15,
-    //                 }}
-    //                 onClick={()=>logoutHandler()}
-    //               >
-    //                 Logout
-    //               </Button>
-    //             </Box>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </section>
+    
 
     <div className="ticket-wrapper">
       {data.map((ticket, index) => {

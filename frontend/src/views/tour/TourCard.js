@@ -1,24 +1,26 @@
 import React from "react";
 import './Tour.css';
 import { useNavigate } from "react-router-dom";
+import { getEmail } from "../../localStorage";
 
-const TourCard = ({ data }) => {
+const TourCard = ({ data, date }) => {
   const navigate = useNavigate();
   const tourIdgenerator = () => {
     return Math.floor(Math.random() * 10000);
   };
   const bookTourHandler = ()=>{
+    console.log(data)
     fetch('https://us-central1-authentic-codex-352820.cloudfunctions.net/TourOperatorTopicFunction',{
       method:'POST',
       headers:{
         'Content-Type':'application/json'
       },
       body:JSON.stringify({
-        email:"ks@dal.ca",
-        tourName:data.tourName,
-        price:data.price,
-        bookingDate: "22-08-2022",
-        bookingId:tourIdgenerator()
+        email:getEmail(),
+        tourName:data.tour_name,
+        price:data.price_per_person,
+        bookingDate: date.toString(),
+        bookingId:date.tourId
       })
     }).then(response=>response.json()).then(result=>console.log(result))
     navigate('/summary',{state:{data:data,type:'tour'}})
@@ -29,9 +31,10 @@ const TourCard = ({ data }) => {
       <div className="card p-3">
         <div className="d-flex justify-content-between align-items-center ">
           <div className="mt-2">
-            <h4 className="text-uppercase">{data.tourName}</h4>
+            <h4 className="text-uppercase">{data.tour_name}</h4>
             <div className="mt-5">
-              <h1 className="main-heading mt-0">${data.price}</h1>
+              <h1 className="main-heading mt-0">${data.price_per_person}{" "}/ person</h1>
+              <p>{data.destination}</p>
               <div className="d-flex flex-row user-ratings">
                 <div className="ratings">
                   <i className="fa fa-star"></i>
@@ -43,7 +46,7 @@ const TourCard = ({ data }) => {
             </div>
           </div>
           <div className="image">
-            <img src={data.url} width="200" alt="..." />
+            <img src={data.tour_details} width="200" alt="..." />
           </div>
         </div>
 

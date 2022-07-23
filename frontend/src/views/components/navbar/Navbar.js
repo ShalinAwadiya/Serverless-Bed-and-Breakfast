@@ -60,13 +60,25 @@ export default function NavBar() {
 
           <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
             <Button
-              key='cart'
+              key='feedback'
               component="a"
-              href='/food-cart'
+              href='/feedback'
               variant='outlined'
               sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
             >
                Feedback
+            </Button>
+          </Box>
+
+          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
+            <Button
+              key='notify'
+              component="a"
+              href='/notify'
+              variant='outlined'
+              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+            >
+               Notifications
             </Button>
           </Box>
 
