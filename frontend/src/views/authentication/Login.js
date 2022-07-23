@@ -18,7 +18,7 @@ const Login = () => {
         setSession(CognitoUserSession);
         console.log(getSession());
         if (getSession().idToken.payload.email === 'admin@dal.ca') {
-          navigate('/admin')
+          navigate('/charts')
         } else {
           navigate('/security-questions')
         }
