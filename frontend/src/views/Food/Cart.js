@@ -1,20 +1,26 @@
-import { Button, Container, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Button, Container, Grid, Paper, Snackbar, Stack, Typography } from "@mui/material";
+import MuiAlert from '@mui/material/Alert';
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { getUserId, getSession } from "../../localStorage";
-import FoodItem from "./FoodItem";
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { getUserId } from "../../localStorage";
+import FoodItem from "./CartFoodItems";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 export default function Cart() {
     const [cart, setCart] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         axios({
             method: 'get',
             url: 'https://5ghx6a5sn7gfxlxiwtpv77fsea0lgsas.lambda-url.us-east-1.on.aws?userSub=' + getUserId()
         }).then((res) => {
-            console.log({ res });
+            console.log('Cart fetched for the user: ', res);
             if (res.data.Item) {
                 setCart(res.data.Item.food);
                 setTotalPrice(res.data.Item.totalPrice);
@@ -22,18 +28,15 @@ export default function Cart() {
         });
     }, []);
 
-    const handleTotalPriceChange = (total) => {
-        console.log({ total })
-        setTotalPrice(total);
-    }
-
     const handleCheckout = () => {
-        //GET final cart object from food_cart
         axios({
             method: 'get',
             url: 'https://5ghx6a5sn7gfxlxiwtpv77fsea0lgsas.lambda-url.us-east-1.on.aws?userSub=' + getUserId()
         }).then((res) => {
-            console.log({ res });
+            setCart([]);
+            setOpen(true);
+
+            //Invoice Creation Lambda Function Call
             var request = res.data.Item;
             request['Id'] = uuidv4();
             console.log({ request });
@@ -44,21 +47,19 @@ export default function Cart() {
                 data: JSON.stringify(request),
                 headers: { "Content-Type": "application/json" },
             }).then((res) => {
-                console.log({ res });
-                //Remove the cart from food_cart once the cart order is checkedout and invoice is created
-                axios({
-                    method: 'delete',
-                    url: 'https://ajkfb6262syhrup5x6w5s2j7ri0jyckd.lambda-url.us-east-1.on.aws?userSub=' + getUserId(),
-                    data: JSON.stringify(request),
-                    headers: { "Content-Type": "application/json" },
-                }).catch((err) => {
-                    console.log(err);
-                })
+                console.log('Invoice creation response: ', res);
             }).catch((err) => {
                 console.log(err);
             })
         });
     }
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
     return (
         <>
@@ -72,8 +73,8 @@ export default function Cart() {
                                 <FoodItem
                                     item={item}
                                     key={index}
-                                    cartPrice={totalPrice}
-                                    handleTotalPriceMethod={handleTotalPriceChange}
+                                    totalPrice={totalPrice}
+                                    setTotalPrice={setTotalPrice}
                                 />
                             )
                         }
@@ -100,6 +101,11 @@ export default function Cart() {
                             </Grid>
                     }
                 </Paper>
+                <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        Order placed successfully!!!
+                    </Alert>
+                </Snackbar>
             </Container>
         </>
     );

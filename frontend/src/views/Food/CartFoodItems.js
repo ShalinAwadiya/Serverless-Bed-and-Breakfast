@@ -5,17 +5,16 @@ import { useState } from "react";
 import { getSession } from '../../localStorage';
 import axios from "axios";
 
-export default function FoodItem({ item }) {
+export default function FoodItem({ item, totalPrice, setTotalPrice }) {
     const [quantity, setQuantity] = useState(item.quantity)
     const [price, setPrice] = useState(parseInt(item.price));
-
     const basePrice = item.basePrice;
 
     const handleIncrement = () => {
-        //Limit to 5 Quantity per item
         if (quantity != 5) {
             setQuantity(quantity + 1);
             setPrice(price + parseInt(basePrice));
+            setTotalPrice(parseInt(totalPrice) + parseInt(basePrice));
 
             var request = {
                 userSub: getSession().idToken.payload.sub,
@@ -34,7 +33,7 @@ export default function FoodItem({ item }) {
                 data: JSON.stringify(request),
                 headers: { "Content-Type": "application/json" },
             }).then((res) => {
-                console.log({ res });
+                console.log('Food Items added or updated to cart: ', res);
             }).catch((err) => {
                 console.log(err);
             })
@@ -45,6 +44,7 @@ export default function FoodItem({ item }) {
         if (quantity != 1) {
             setQuantity(quantity - 1);
             setPrice(price - basePrice);
+            setTotalPrice(parseInt(totalPrice) - parseInt(basePrice));
 
             var request = {
                 userSub: getSession().idToken.payload.sub,
@@ -57,15 +57,13 @@ export default function FoodItem({ item }) {
                     quantity: quantity - 1
                 }
             }
-            console.log({ request });
-
             axios({
                 method: 'post',
                 url: 'https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/',
                 data: JSON.stringify(request),
                 headers: { "Content-Type": "application/json" },
             }).then((res) => {
-                console.log({ res });
+                console.log('Food Items added or updated to cart: ', res);
             }).catch((err) => {
                 console.log(err);
             })

@@ -4,6 +4,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Button, Container, Toolbar } from "@mui/material";
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import BreakfastDiningIcon from '@mui/icons-material/BreakfastDining';
 import Guest from './Guest';
 import { getEmail } from '../../../localStorage/index';
 
@@ -34,13 +36,25 @@ export default function NavBar() {
 
           <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
             <Button
+              key='kitchen'
+              component="a"
+              href='/food'
+              variant='outlined'
+              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+            >
+              <BreakfastDiningIcon /> KITCHEN
+            </Button>
+          </Box>
+
+          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
+            <Button
               key='cart'
               component="a"
               href='/food-cart'
               variant='outlined'
               sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
             >
-              FOOD CART
+              <ShoppingBagIcon /> CART
             </Button>
           </Box>
 

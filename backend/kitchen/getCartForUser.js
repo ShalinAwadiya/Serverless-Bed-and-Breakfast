@@ -11,7 +11,7 @@ exports.handler = async (event) => {
         Key: {
             userSub: userSub,
         }
-    };
+    }; 
 
     const fetchedCartDetails = await dynamoClient.get(cart).promise();
     console.log({ fetchedCartDetails });

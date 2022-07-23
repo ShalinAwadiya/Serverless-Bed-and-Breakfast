@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import './Food.css';
-import { useNavigate } from "react-router-dom";
-import { Button, Grid, Paper, Stack, Typography } from "@mui/material";
+import { Button, Grid, Paper, Snackbar, Stack, Typography } from "@mui/material";
+import MuiAlert from '@mui/material/Alert';
 import { getSession } from '../../localStorage';
 import axios from "axios";
 
-const FoodCard = ({ item }) => {
-  const navigate = useNavigate();
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
+const FoodCard = ({ item }) => {
   const [added, setAdded] = useState(false);
 
   const addToCart = (item) => {
@@ -18,33 +20,33 @@ const FoodCard = ({ item }) => {
       quantity: 1
     }
 
-    console.log({ foodItem });
-
-    if (getSession()) {
-      //If the user is already loggedIn and session exists
-      var request = {
-        userSub: getSession().idToken.payload.sub,
-        email: getSession().idToken.payload.email,
-        totalPrice: item.price,
-        food: foodItem
-      }
-      console.log(JSON.stringify(request));
-
-      axios({
-        method: 'post',
-        url: 'https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/',
-        data: JSON.stringify(request),
-        headers: { "Content-Type": "application/json" },
-      }).then((res) => {
-        setAdded(true);
-        console.log({ res });
-      }).catch((err) => {
-        console.log(err);
-      })
-    } else {
-      //We need to store the cart in local storage and insert once the user logs in successfully
+    var request = {
+      userSub: getSession().idToken.payload.sub,
+      email: getSession().idToken.payload.email,
+      totalPrice: item.price,
+      food: foodItem
     }
+    console.log(JSON.stringify(request));
+
+    axios({
+      method: 'post',
+      url: 'https://ubrqk7ctmctgdpncdkxxsrhvqe0dwefh.lambda-url.us-east-1.on.aws/',
+      data: JSON.stringify(request),
+      headers: { "Content-Type": "application/json" },
+    }).then((res) => {
+      setAdded(true);
+      console.log({ res });
+    }).catch((err) => {
+      console.log(err);
+    })
   }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setAdded(false);
+  };
 
   return (
     <Grid item md={3} sm={6} xs={12}>
@@ -86,6 +88,12 @@ const FoodCard = ({ item }) => {
           </Button>
         </Stack>
       </Paper >
+
+      <Snackbar open={added} autoHideDuration={3000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Food Item added to cart!!!
+        </Alert>
+      </Snackbar>
     </Grid >
   );
 };

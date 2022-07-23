@@ -3,9 +3,6 @@ const AWS = require("aws-sdk");
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = async (event) => {
-
-    console.log(event);
-
     const request = JSON.parse(event.body);
     console.log({ request });
 
@@ -22,10 +19,10 @@ exports.handler = async (event) => {
 
     let response;
     if (fetchedCartDetails.Item) {
-        //Add the food item to the existing cart of the user
+        //Update the existing cart of the user
         let updatedFoodItems = fetchedCartDetails.Item.food;
 
-        //If updating the quantity and price
+        //For updating the quantity and price of an existing food item
         let itemExists = false;
         for (var i = 0; i < updatedFoodItems.length; i++) {
             if (updatedFoodItems[i].name === request.food.name) {
@@ -35,7 +32,7 @@ exports.handler = async (event) => {
             }
         }
 
-        //Add the item to the existing cart if it is not already present in the cart
+        //For adding the new food item to the cart when it is not already present
         if (!itemExists) {
             updatedFoodItems.push(request.food);
         }
@@ -43,7 +40,7 @@ exports.handler = async (event) => {
         fetchedCartDetails.Item.food = updatedFoodItems;
 
         updateCart.Item = fetchedCartDetails.Item;
-        updateCart['Item'].totalPrice = parseInt(fetchedCartDetails.Item.totalPrice) + parseInt(request.totalPrice);
+        updateCart['Item'].totalPrice = parseInt(fetchedCartDetails.Item.totalPrice) + parseInt(request.food.basePrice);
 
         console.log('Food Cart Params: ', updateCart);
 
@@ -61,7 +58,6 @@ exports.handler = async (event) => {
             .catch((err) => {
                 console.info("Error: ", err);
             });
-
     } else {
         //Create a new cart for the user based on userSub
         let food = [];
@@ -72,7 +68,7 @@ exports.handler = async (event) => {
             Item: {
                 userSub: request.userSub,
                 email: request.email,
-                totalPrice: request.totalPrice,
+                totalPrice: request.food.basePrice,
                 food: food
             }
         };
