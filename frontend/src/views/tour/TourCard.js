@@ -18,9 +18,9 @@ const TourCard = ({ data, date }) => {
       body:JSON.stringify({
         email:getEmail(),
         tourName:data.tour_name,
-        price:data.price_per_person,
+        price: parseInt(data.price_per_person),
         bookingDate: date.toString(),
-        bookingId:date.tourId
+        bookingId: parseInt(tourIdgenerator())
       })
     }).then(response=>response.json()).then(result=>console.log(result))
     navigate('/summary',{state:{data:data,type:'tour'}})
@@ -35,14 +35,7 @@ const TourCard = ({ data, date }) => {
             <div className="mt-5">
               <h1 className="main-heading mt-0">${data.price_per_person}{" "}/ person</h1>
               <p>{data.destination}</p>
-              <div className="d-flex flex-row user-ratings">
-                <div className="ratings">
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                  <i className="fa fa-star"></i>
-                </div>
-              </div>
+              
             </div>
           </div>
           <div className="image">

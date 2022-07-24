@@ -66,7 +66,7 @@ const RoomCard = ({ data, bookData, price }) => {
           bookingDate: bookData.date, // from bookData
           bookingDays: parseInt(bookData.days), //from bookdata
           bookingId: parseInt(bookIdgenerator()),
-          RoomType: "delux",
+          RoomType: bookData.type,
         }),
       }
     )
