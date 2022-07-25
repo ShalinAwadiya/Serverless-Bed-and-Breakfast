@@ -38,7 +38,7 @@ along with providing features for report generation and visualization.
 1. Obtain the code from GitLab, the link is specified at the top of the file.
 2. Use `git clone <LINK>` to clone the repository to the local system.
 3. Use `cd Frontend` to traverse to the Frontend Web application folder.
-4. Install the required dependencies with `npm install`.
+4. Install the required dependencies with `npm install --legacy-peer-deps`.
 5. In the same directory run the command `npm start` to start the web application on the local system.
 6. By following all the above steps, a web browser will be automatically launched and on the new tab react application would be running.
 
@@ -53,6 +53,9 @@ along with providing features for report generation and visualization.
 - [AWS](https://aws.amazon.com/) - Amazon Web Services
 
 - [GCP](https://cloud.google.com/) - Google Cloud Platform
+
+- [Docker](https://www.docker.com/) - Docker for containerization
+
 
 Please feel free to reach out to us in case of any issues.
 
