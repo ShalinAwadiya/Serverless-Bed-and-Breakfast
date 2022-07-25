@@ -8,6 +8,7 @@ import { TableHead } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { getEmail } from "../../localStorage";
 
 function MessageBox (props){
     const [messages, updateMessages] = useState([{message: "WELCOME"}]);
@@ -28,7 +29,7 @@ function MessageBox (props){
                 params: {
                     message: currentMsg,
                     CurrentBot: currentBot,
-                    UserId: "dhruv3@email.com"
+                    UserId: getEmail()
                 }
             }
         )
