@@ -8,8 +8,10 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import BreakfastDiningIcon from '@mui/icons-material/BreakfastDining';
 import Guest from './Guest';
 import { getEmail } from '../../../localStorage/index';
+import { useNavigate } from 'react-router-dom';
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(false);
   useEffect(() => {
     if (getEmail()) {
@@ -35,7 +37,7 @@ export default function NavBar() {
           </Typography>
 
           <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
-            <Button
+            {/* <Button
               key='kitchen'
               component="a"
               href='/food'
@@ -43,11 +45,12 @@ export default function NavBar() {
               sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
             >
               <BreakfastDiningIcon /> KITCHEN
-            </Button>
+            </Button> */}
+            <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/food")}>KITCHEN</button>
           </Box>
 
           <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
-            <Button
+            {/* <Button
               key='cart'
               component="a"
               href='/food-cart'
@@ -55,19 +58,34 @@ export default function NavBar() {
               sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
             >
               <ShoppingBagIcon /> CART
-            </Button>
+            </Button> */}
+            <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/food-cart")}>CART</button>
           </Box>
 
           <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              key='cart'
+            {/* <Button
+              key='feedback'
               component="a"
-              href='/food-cart'
+              href='/feedback'
               variant='outlined'
               sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
             >
                Feedback
-            </Button>
+            </Button> */}
+            <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/feedback")}>Feedback</button>
+          </Box>
+
+          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
+            {/* <Button
+              key='notify'
+              component="a"
+              href='/notify'
+              variant='outlined'
+              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+            >
+               Notifications
+            </Button> */}
+            <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/notify")}>Notifications</button>
           </Box>
 
           <Box sx={{ display: { xs: 'none', md: 'flex', ml: 10 } }}>

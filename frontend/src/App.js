@@ -20,7 +20,8 @@ import Notify from './views/notify/Notify';
 import Invoices from './views/admin/Invoices';
 import AdminNav from './views/admin/Admin';
 import Invoice from './views/admin/Invoice';
-
+import DisplayFeedback from './views/admin/DisplayFeedback';
+import Feedback from './views/feedback/Feedback';
 const MainLayout = () => (
   <>
     <div className="App">
@@ -54,6 +55,8 @@ const ProtectedRoutes = () => {
       <Route exact path='/food' element={<Food />} />
       <Route exact path='/food-cart' element={<Cart />} />
       <Route exact path="/displaytour" element={<DisplayTour />}></Route>
+      <Route exact path="/feedback" element={<Feedback />}></Route>
+      <Route exact path='/notify' element={<Notify />} />
     </Routes>
   )
 }
@@ -69,6 +72,7 @@ function App() {
             <Route exact path='/invoices' element={<Invoices />} />
             <Route exact path='/charts' element={<Admin />} />
             <Route exact path='/invoice' element={<Invoice />} />
+            <Route exact path='/dfeedback' element={<DisplayFeedback />} />
           </Route>
 
           {/* <Route exact path='/bot' element={<ChatSupport />} />  */}
@@ -79,7 +83,6 @@ function App() {
             <Route exact path='/security-questions' element={<LoginStage2 />} />
             <Route exact path='/caesar-cipher' element={<LoginStage3 />} />
             <Route exact path='/summary' element={<Summary type='room ' />} />
-            <Route exact path='/notify' element={<Notify />} />
             <Route exact path='/bookroom' element={<RoomBook />} />
 
             {/* Routes that require login */}

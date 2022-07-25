@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import {useNavigate} from 'react-router-dom'
-const pages = ['invoices', 'charts'];
+const pages = ['invoices', 'charts','dfeedback'];
 
 const AdminNav = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

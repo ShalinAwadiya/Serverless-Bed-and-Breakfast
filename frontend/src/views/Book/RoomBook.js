@@ -7,23 +7,11 @@ const RoomBook = () => {
   const [date, setDate] = useState("");
   const [type,setType] = useState("")
   
-  // const thisis=()=>{
-  //   console.log(type)
-  //   navigate("/displayroom", { state: { days: days, date: date, type:type } });
-  // }
+  
   return (
     <div className="main-section">
       <form>
-        {/* <div className="form-group">
-          <label for="exampleInputEmail1">Number of Guest</label>
-          <input
-            type="email"
-            className="form-control"
-            id="name"
-            placeholder="Enter name"
-            style={{ margin: "0.75rem 0 0.75rem 0" }}
-          />
-        </div> */}
+        
         <div className="form-group">
           <label for="days">Booking Days</label>
           <input
