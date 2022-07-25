@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Invoices = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch(
@@ -24,17 +24,24 @@ const Invoices = () => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item,index) => {
-            console.log("item")
+        {data.map((item, index) => {
           return (
             <tr key={index}>
-              <td>{index+1}</td>
+              <td>{index + 1}</td>
               <td>{item.Id}</td>
               <td>{item.email}</td>
               <td>
-                <button type="button" class="btn btn-light"
-                     onClick={()=>navigate('/invoice',{state:{invoice:item,index:index}})}   
-                >Invoice</button>
+                <button
+                  type="button"
+                  class="btn btn-light"
+                  onClick={() =>
+                    navigate("/invoice", {
+                      state: { invoice: item, index: index },
+                    })
+                  }
+                >
+                  Invoice
+                </button>
               </td>
             </tr>
           );
