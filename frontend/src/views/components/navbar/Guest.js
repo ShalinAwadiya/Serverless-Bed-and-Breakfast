@@ -11,16 +11,11 @@ const Guest = ({ isRegistered, setIsRegistered }) => {
   if (isRegistered) {
     return (
       <>
-        {/* <Button
-                    key='logout'
-                    component="a"
-                    href="/profile"
-                    variant='outlined'
-                    sx={{ mr: 5, my: 2, color: 'black', display: 'block', fontSize: 15 }}
-                >
-                    <CgProfile style={{ "fontSize": "1.7rem" }} />
-                </Button> */}
-        <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/profile")}>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          onClick={() => navigate("/profile")}
+        >
           <CgProfile style={{ fontSize: "1.7rem" }} />
         </button>
         <button
@@ -34,35 +29,17 @@ const Guest = ({ isRegistered, setIsRegistered }) => {
         >
           LOGOUT
         </button>
-        {/* <Button
-                    key='logout'
-                    component="a"
-                    variant='outlined'
-                    sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
-                    onClick={() => {
-                        logout()
-                        setIsRegistered(false);
-                        navigate('/')
-                    }}
-                >
-                    LOGOUT
-                </Button> */}
       </>
     );
   } else {
     return (
-    //   <Button
-    //     key="login"
-    //     component="a"
-    //     variant="outlined"
-    //     sx={{ my: 2, color: "black", display: "block", fontSize: 15 }}
-    //     onClick={() => {
-    //       navigate("/login");
-    //     }}
-    //   >
-    //     LOGIN
-    //   </Button>
-    <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/login")}>Login</button>
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        onClick={() => navigate("/login")}
+      >
+        Login
+      </button>
     );
   }
 };

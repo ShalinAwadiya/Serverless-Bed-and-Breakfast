@@ -1,23 +1,23 @@
-import '../../../assets/css/styles.css'
+import "../../../assets/css/styles.css";
 import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Button, Container, Toolbar } from "@mui/material";
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
-import BreakfastDiningIcon from '@mui/icons-material/BreakfastDining';
-import Guest from './Guest';
-import { getEmail } from '../../../localStorage/index';
-import { useNavigate } from 'react-router-dom';
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import BreakfastDiningIcon from "@mui/icons-material/BreakfastDining";
+import Guest from "./Guest";
+import { getEmail } from "../../../localStorage/index";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const navigate = useNavigate();
   const [isRegistered, setIsRegistered] = useState(false);
   useEffect(() => {
     if (getEmail()) {
-      setIsRegistered(true)
+      setIsRegistered(true);
     }
-  }, [isRegistered])
+  }, [isRegistered]);
   return (
     <AppBar class="navbar-light bg-light" position="static">
       <Container maxWidth="xl">
@@ -28,71 +28,62 @@ export default function NavBar() {
             href="/"
             sx={{
               mr: 5,
-              display: { xs: 'none', md: 'flex' },
-              color: 'inherit',
-              textDecoration: 'none',
+              display: { xs: "none", md: "flex" },
+              color: "inherit",
+              textDecoration: "none",
             }}
           >
             Bed & Breakfast
           </Typography>
 
-          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
-            {/* <Button
-              key='kitchen'
-              component="a"
-              href='/food'
-              variant='outlined'
-              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+          <Box sx={{ mr: 5, display: { xs: "none", md: "flex" } }}>
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              onClick={() => navigate("/food")}
             >
-              <BreakfastDiningIcon /> KITCHEN
-            </Button> */}
-            <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/food")}>KITCHEN</button>
+              KITCHEN
+            </button>
           </Box>
 
-          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
-            {/* <Button
-              key='cart'
-              component="a"
-              href='/food-cart'
-              variant='outlined'
-              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+          <Box sx={{ mr: 5, display: { xs: "none", md: "flex" } }}>
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              onClick={() => navigate("/food-cart")}
             >
-              <ShoppingBagIcon /> CART
-            </Button> */}
-            <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/food-cart")}>CART</button>
+              CART
+            </button>
           </Box>
 
-          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
-            {/* <Button
-              key='feedback'
-              component="a"
-              href='/feedback'
-              variant='outlined'
-              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+          <Box sx={{ mr: 5, display: { xs: "none", md: "flex" } }}>
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              onClick={() => navigate("/feedback")}
             >
-               Feedback
-            </Button> */}
-            <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/feedback")}>Feedback</button>
+              Feedback
+            </button>
           </Box>
 
-          <Box sx={{ mr: 5, display: { xs: 'none', md: 'flex' } }}>
-            {/* <Button
-              key='notify'
-              component="a"
-              href='/notify'
-              variant='outlined'
-              sx={{ my: 2, color: 'black', display: 'block', fontSize: 15 }}
+          <Box sx={{ mr: 5, display: { xs: "none", md: "flex" } }}>
+            <button
+              type="button"
+              class="btn btn-outline-dark"
+              onClick={() => navigate("/notify")}
             >
-               Notifications
-            </Button> */}
-            <button type="button" class="btn btn-outline-dark" onClick={()=>navigate("/notify")}>Notifications</button>
+              Notifications
+            </button>
           </Box>
 
-          <Box sx={{ display: { xs: 'none', md: 'flex', ml: 10 } }}>
-            <Guest isRegistered={isRegistered} setIsRegistered={setIsRegistered} />
+          <Box sx={{ display: { xs: "none", md: "flex", ml: 10 } }}>
+            <Guest
+              isRegistered={isRegistered}
+              setIsRegistered={setIsRegistered}
+            />
           </Box>
         </Toolbar>
       </Container>
-    </AppBar >
+    </AppBar>
   );
 }

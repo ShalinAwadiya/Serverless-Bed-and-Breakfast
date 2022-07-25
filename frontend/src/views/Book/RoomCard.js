@@ -24,23 +24,21 @@ const RoomCard = ({ data, bookData, price }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const yesHandler = ()=>{
-    navigate('/displaytour',{state:{bookData:bookData}})
-  }
-  const noHandler = ()=>{
-    navigate('/summary')
-  }
+  const yesHandler = () => {
+    navigate("/displaytour", { state: { bookData: bookData } });
+  };
+  const noHandler = () => {
+    navigate("/summary");
+  };
   const url =
     "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVkfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60";
   const navigate = useNavigate();
-  console.log(bookData);
   const bookIdgenerator = () => {
     return Math.floor(Math.random() * 10000);
   };
 
   const dateFormat = (date) => {
     var newDate = date.split("-");
-    console.log(date);
     return (
       newDate[2].toString() +
       "-" +
@@ -50,8 +48,7 @@ const RoomCard = ({ data, bookData, price }) => {
     );
   };
   const bookRoomHanlder = () => {
-    console.log("started..");
-    handleOpen()
+    handleOpen();
     fetch(
       "https://us-central1-authentic-codex-352820.cloudfunctions.net/HotelManagementTopic",
       {
@@ -72,7 +69,6 @@ const RoomCard = ({ data, bookData, price }) => {
     )
       .then((response) => response.json())
       .then((result) => console.log("Result::", result));
-    console.log("SESSION:", getEmail());
     //navigate("/summary", { state: { data: data, type: "room" } });
   };
   return (
@@ -101,8 +97,8 @@ const RoomCard = ({ data, bookData, price }) => {
         </div>
 
         <p>A great option weather you are at office or at home. </p>
-{/* () => bookRoomHanlder() */}
-        <button class="btn btn-danger" onClick={()=>bookRoomHanlder()}> 
+        {/* () => bookRoomHanlder() */}
+        <button class="btn btn-danger" onClick={() => bookRoomHanlder()}>
           Book
         </button>
         <Modal
@@ -116,8 +112,12 @@ const RoomCard = ({ data, bookData, price }) => {
               Do you want to book a tour?
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <Button variant="outlined" onClick={()=>yesHandler()}>Yes</Button>
-              <Button variant="outlined" onClick={()=>noHandler()}>No</Button>
+              <Button variant="outlined" onClick={() => yesHandler()}>
+                Yes
+              </Button>
+              <Button variant="outlined" onClick={() => noHandler()}>
+                No
+              </Button>
             </Typography>
           </Box>
         </Modal>

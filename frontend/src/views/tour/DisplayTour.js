@@ -8,7 +8,6 @@ const DisplayTour = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log(bookData.bookData.days);
     fetch(
       `https://kzearvw4yjeu3xuwstrliwr3da0dlmcj.lambda-url.us-east-1.on.aws/`,
       {

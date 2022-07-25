@@ -4,16 +4,7 @@ import { getEmail } from "../../localStorage/index";
 const Notify = () => {
   const [data, setData] = useState([]);
   const [load, setLoad] = useState(false);
-  //   const clickHandler = () => {
-  //     fetch(
-  //       "https://xldvx2k4buvuhyy4pawwz2lz2m0gxcvh.lambda-url.us-east-1.on.aws?email=dhruv@email.com",
-  //       {
-  //         method: "GET",
-  //       }
-  //     )
-  //       .then((response) => response.json())
-  //       .then((result) => console.log(result));
-  //   };
+
   useEffect(() => {
     if (getEmail()) {
       fetch(
